@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "584798238803",
+    "project_id": "nizhal-app-prod",
+    "storage_bucket": "nizhal-app-prod.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584798238803:android:af7ac7a79cdceeb99faea6",
+        "android_client_info": {
+          "package_name": "com.nizhal.agent"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxC2_-8fuN9BK37DnM8oCzHZgB1yJKr7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584798238803:android:a846e2e0af19fd339faea6",
+        "android_client_info": {
+          "package_name": "com.nizhal.customer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxC2_-8fuN9BK37DnM8oCzHZgB1yJKr7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

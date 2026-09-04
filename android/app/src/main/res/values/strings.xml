@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nizhal</string>
+    <string name="facebook_app_id">1517245456842762</string>
+    <string name="fb_login_protocol_scheme">fb1517245456842762</string>
+    <string name="facebook_client_token">f0ffa5c87fe54b5248c848a2afd29998</string>
+</resources>

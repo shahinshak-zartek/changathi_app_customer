@@ -1,0 +1,12 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - "build/**"
+
+linter:
+  rules:
+    # This client's screens/widgets were migrated out of zartek_core and still
+    # consume some of its internal libraries directly (package:zartek_core/src/…).
+    # New client UI should prefer the public barrel (package:zartek_core/zartek_core.dart).
+    implementation_imports: false

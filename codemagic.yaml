@@ -1,0 +1,66 @@
+workflows:
+  customer-android-release:
+    name: Customer Android Release
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+
+    # Standalone client repo. `zartek_core` is pulled from its own private repo
+    # via the git ref pinned in pubspec.yaml, so CI must be able to fetch it
+    # (add the SSH key / token for the zartek_core repo to this Codemagic app,
+    # or switch the pubspec git url to SSH and register a deploy key).
+    environment:
+      groups:
+        - google_play_credentials
+      flutter: stable
+      java: 17
+      ndk: 28.0.12433566
+      vars:
+        PACKAGE_NAME: "com.nizhal.customer"
+
+      # Upload the Android upload keystore in Codemagic with this reference.
+      android_signing:
+        - vibe_talk_customer_upload_keystore
+
+    cache:
+      cache_paths:
+        - $FLUTTER_ROOT/.pub-cache
+        - $HOME/.gradle/caches
+
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: "*"
+          include: true
+          source: true
+
+    scripts:
+      - name: Set up local.properties
+        script: |
+          echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
+
+      - name: Get Flutter packages
+        script: |
+          flutter pub get
+
+      - name: Analyze
+        script: |
+          flutter analyze
+
+      - name: Run tests
+        script: |
+          flutter test
+
+      - name: Build Android app bundle
+        script: |
+          flutter build appbundle --release --build-number=$PROJECT_BUILD_NUMBER
+
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - flutter_drive.log
+
+    publishing:
+      google_play:
+        credentials: $GOOGLE_PLAY_SERVICE_ACCOUNT_CREDENTIALS
+        track: internal
