@@ -313,7 +313,7 @@ class UpdateGateState extends State<UpdateGate> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Update Nizhal App',
+                                        'Update Changathi App',
                                         style: AppTextStyle().titleMedium
                                             .copyWith(color: AppColors.primary),
                                       ),
@@ -442,7 +442,7 @@ class UpdateGateState extends State<UpdateGate> {
                               _result.message.isNotEmpty
                                   ? _result.message
                                   // Brand comes from AppConfig — this used to
-                                  // read "Vibe Talk" in the Nizhal app.
+                                  // read "Vibe Talk" in the Changathi app.
                                   : 'A new version of '
                                         '${AppConfigScope.instance.appName} is '
                                         'available with improvements and bug '
@@ -500,7 +500,7 @@ class UpdateGateState extends State<UpdateGate> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Update Nizhal App',
+                                          'Update Changathi App',
                                           style: AppTextStyle().titleMedium
                                               .copyWith(
                                                 color: AppColors.primary,

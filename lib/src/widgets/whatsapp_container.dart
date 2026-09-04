@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import '../app/app_text_style.dart';
 import '../app/palette.dart';
+import '../app/theme.dart';
 import '../app/theme_x.dart';
 import '../constants/assets.dart';
 
@@ -25,62 +27,43 @@ class WhatsappContainer extends StatelessWidget {
       child: Container(
         width: 300.w,
         height: 42.h,
-
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(16),
           gradient: const LinearGradient(
             colors: [
-              Color(0xFF2e0287),
-              Color(0xFF9751f8),
+              Color(0xFFd72ebe),
+              Color(0xFF2a6dcc),
             ],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
         ),
-        child: Container(
-          margin: const EdgeInsets.all(1.5), // Border width
-          decoration: BoxDecoration(
-            color: Palette.primary,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Material(
-            color: Colors.transparent,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    Assets.whatsapp,width: 20.sp,height: 20.sp,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (isLoading)
+                const SizedBox(
+                  height: 25,
+                  width: 25,
+                  child: CupertinoActivityIndicator(
+                    color: Colors.black,
                   ),
-                  const SizedBox(width: 12),
-                  if (isLoading)
-                    const SizedBox(
-                      height: 25,
-                      width: 25,
-                      child: CupertinoActivityIndicator(),
-                    ),
-                  if (isLoading) SizedBox(width: 6.w),
-                  ShaderMask(
-                    shaderCallback: (bounds) => const LinearGradient(
-                      colors: [
-                        Color(0xFF2e0287),
-                        Color(0xFF9751f8),
-                      ],
-                    ).createShader(bounds),
-                    child:  Text(
-                      isLoading ? 'Sending' : 'Send OTP via WhatsApp',
-                      style: context.labelLarge(
-                        fontSize: 14.sp,
-                        textColor: Palette.white),
-                    ),
-                  ),
-                ],
+                ),
+
+              if (isLoading) SizedBox(width: 6.w),
+
+              Text(
+                isLoading ? 'Sending' : 'Send WhatsApp OTP',
+                style: AppTextStyle().bodyMedium.copyWith(
+                  color: Colors.white,
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),
-    );
+    );;
   }
 }

@@ -9,11 +9,11 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.nizhal.customer</string>
+	<string>com.changathi.customer</string>
 	<key>PROJECT_ID</key>
-	<string>vibetalks-prod</string>
+	<string>changathi-prod</string>
 	<key>STORAGE_BUCKET</key>
-	<string>vibetalks-prod.firebasestorage.app</string>
+	<string>chanagthi-prod.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>

@@ -55,26 +55,27 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     });
 
     return Scaffold(
+      backgroundColor: Palette.black,
       body: SafeArea(child: SingleChildScrollView(
          child: Column(
            crossAxisAlignment: CrossAxisAlignment.center,
            children: [
              verticalSpaceLarge,
              Image.asset(Assets.appIcon, fit: BoxFit.cover, height: 100.h),
-             verticalSpaceMedium,
+             verticalSpaceLarge,
             Center(
               child: Text(
                 strings.t(AppStringKey.welcomeBack),
-                style: AppTextStyle().titleLarge,
+                style: AppTextStyle().titleLarge.copyWith(color: AppColors.white),
               ),
             ),
-             verticalSpaceMedium,
+             verticalSpaceTiny,
             Text(
               textAlign: TextAlign.center,
               strings.t(AppStringKey.enterMobileToLogin),
-              style: AppTextStyle().bodyMedium,
+              style: AppTextStyle().bodyMedium.copyWith(color: AppColors.white),
             ),
-             verticalSpaceMedium,
+             verticalSpaceLarge,
 
              Padding(
                padding: EdgeInsets.symmetric(horizontal: 25.0.w),
@@ -84,23 +85,18 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   Text(
                     textAlign: TextAlign.center,
                     strings.t(AppStringKey.mobileNumber),
-                    style: AppTextStyle().bodyMedium,
+                    style: AppTextStyle().bodyMedium.copyWith(color: AppColors.white),
                   ),
-                   verticalSpaceSmall,
+                   // verticalSpaceSmall,
                    FormBuilder(
                      key: _formKey,
                      autovalidateMode: AutovalidateMode.onUnfocus,
-                     // initialValue: {
-                     //   'identification':'5710080281081',
-                     //       'password':'Test123;'
-                     // },
                      child: Column(
                        children: [
                          verticalSpaceSmall,
-
                          ///phone
                          FormBuilderTextField(
-                           cursorColor: Palette.black,
+                           cursorColor: Palette.grey,
                            autovalidateMode: AutovalidateMode.onUserInteraction,
                            validator: (value) => validatePhoneNumber("+$phoneCode $value"),
                            style: formBuilderTextStyle(context),
@@ -108,7 +104,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                            name: 'phone',
                            decoration: buildInputDecoration(context,
                              labelColor: Colors.grey,
-                             borderRadius: BorderRadius.circular(5),
+                             borderRadius: BorderRadius.circular(16),
+                             fillColor: Palette.darkBackground,
                              prefixIcon: GestureDetector(
                                behavior: HitTestBehavior.opaque,
                                onTap: () => gotoCountryPicker(context, (p0) {
@@ -131,18 +128,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                       border: Border(
                                         right: BorderSide(
                                           width: 1,
-                                          color: AppColors.lightGray,
+                                          color: AppColors.gray1,
                                         ),
                                       ),
                                    ),
-                                   child: Text("+$phoneCode",style: AppTextStyle().bodyMedium,
+                                   child: Text("+$phoneCode",style: AppTextStyle().bodyMedium.copyWith(color: AppColors.white),
                                    ),
                                  ),
                                ),
                              ),
-                             hintText: strings.t(
-                               AppStringKey.enterMobileNumberHint,
-                             ),
+                             hintText: strings.t(AppStringKey.enterMobileNumberHint,),
                            ),
 
                            keyboardType: TextInputType.number,
@@ -156,20 +151,21 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                              }
                            },
                          ),
-                         verticalSpaceMedium,
-                          if (isIndianNumber)
-                            CustomElevatedButton(
-                              width: 300.w,
-                              height: 42.h,
-                              isLoading: isSmsLoading,
-                              label: 'Send OTP',
-                              onPressed: isLoginLoading
-                                  ? null
-                                  : () {
-                                      submit(_smsChannel);
-                                    },
-                            ),
-                          if (isIndianNumber) verticalSpaceSmall,
+                         verticalSpaceSmall,
+                          // if (isIndianNumber)
+                          //   CustomElevatedButton(
+                          //     width: 300.w,
+                          //     height: 42.h,
+                          //     isLoading: isSmsLoading,
+                          //     label: 'Send OTP',
+                          //     onPressed: isLoginLoading
+                          //         ? null
+                          //         : () {
+                          //             submit(_smsChannel);
+                          //           },
+                          //   ),
+                          // if (isIndianNumber)
+                          //   verticalSpaceSmall,
                           WhatsappContainer(
                             isLoading: isWhatsappLoading,
                             isEnabled: !isLoginLoading,
@@ -183,22 +179,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                  ],
                ),
              ),
-             if (isIndianNumber) ...[
-             verticalSpaceSX,
-            Text(
-              textAlign: TextAlign.center,
-              strings.t(AppStringKey.chooseWhatsappOtp),
-              style: AppTextStyle().bodySmall,
-            ),
-             verticalSpaceMedium,
-          ],
-             verticalSpaceSX,
+             verticalSpaceLarge,
+             verticalSpaceLarge,
+             verticalSpaceLarge,
+             verticalSpaceLarge,
              Column(
                children: [
                 Text(
                   textAlign: TextAlign.center,
                   strings.t(AppStringKey.byCreatingAccount),
-                  style: AppTextStyle().bodySmall.copyWith(fontSize: 8.sp),
+                  style: AppTextStyle().bodySmall.copyWith(fontSize: 8.sp, color: AppColors.white),
                 ),
                  Row(
                    mainAxisAlignment: MainAxisAlignment.center,
@@ -207,7 +197,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       textAlign: TextAlign.center,
                       strings.t(AppStringKey.toOur),
                       style: AppTextStyle().bodySmall.copyWith(
-                        fontSize: 8.sp,
+                        fontSize: 8.sp, color: AppColors.white
                       ),
                     ),
                      GestureDetector(
@@ -226,8 +216,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         child: ShaderMask(
                           shaderCallback: (bounds) => const LinearGradient(
                             colors: [
-                              Color(0xFF4C1D95),
-                              Color(0xFF8B5CF6),
+                              Color(0xFFd72ebe),
+                              Color(0xFF2a6dcc),
                             ],
                           ).createShader(bounds),
                           child: Text(

@@ -1,4 +1,4 @@
-import 'package:Nizhal/src/features/wallet/view/sms_wallet_screen.dart';
+import 'package:Changathi/src/features/wallet/view/sms_wallet_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:flutter/material.dart';

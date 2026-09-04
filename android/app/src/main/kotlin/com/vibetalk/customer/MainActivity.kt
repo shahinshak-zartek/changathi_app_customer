@@ -1,4 +1,4 @@
-package com.nizhal.customer
+package com.changathi.customer
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1909,10 +1909,12 @@ packages:
   zartek_core:
     dependency: "direct main"
     description:
-      path: "../Zartek_calling_customer_core_for_clone_nizhal_customer_from_vibetalks_customer"
-      relative: true
-    source: path
-    version: "2.1.1+22"
+      path: "."
+      ref: "v2.1.0"
+      resolved-ref: "463ac6a32a82bdc541a7f1cdedb6614b1a365793"
+      url: "https://github.com/anshif-zartek/zartek_core.git"
+    source: git
+    version: "2.1.0+21"
 sdks:
   dart: ">=3.11.0 <4.0.0"
   flutter: ">=3.41.0"

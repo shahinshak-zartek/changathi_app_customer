@@ -1,5 +1,5 @@
 
-import 'package:Nizhal/src/app/palette.dart';
+import 'package:Changathi/src/app/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:zartek_core/src/config/app_config.dart';

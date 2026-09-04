@@ -124,12 +124,12 @@ class ReferAndEarnContainer extends ConsumerWidget {
     }
 
     final buffer = StringBuffer()
-      ..writeln('Use my referral code for Nizhal App!')
+      ..writeln('Use my referral code for Changathi App!')
       ..writeln('referral code 🎁:')
       ..writeln()
       ..writeln(fullCode)
       ..writeln()
-      ..writeln('Install Nizhal App! 📲');
+      ..writeln('Install Changathi App! 📲');
     if (androidLink != null && androidLink.isNotEmpty) {
       buffer.writeln('Android: $androidLink');
     }

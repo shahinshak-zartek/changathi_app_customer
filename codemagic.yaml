@@ -15,7 +15,7 @@ workflows:
       java: 17
       ndk: 28.0.12433566
       vars:
-        PACKAGE_NAME: "com.nizhal.customer"
+        PACKAGE_NAME: "com.changathi.customer"
 
       # Upload the Android upload keystore in Codemagic with this reference.
       android_signing:

@@ -1,6 +1,6 @@
 // Smoke test for the Vibe Talk client configuration.
 
-import 'package:Nizhal/app_config.dart';
+import 'package:Changathi/app_config.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:zartek_core/zartek_core.dart';
 

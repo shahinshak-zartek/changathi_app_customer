@@ -1,5 +1,5 @@
 
-import 'package:Nizhal/src/app/palette.dart';
+import 'package:Changathi/src/app/palette.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/widgets.dart';
 

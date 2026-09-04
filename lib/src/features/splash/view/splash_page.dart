@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
 import '../../../app/app_text_style.dart';
+import '../../../app/palette.dart';
 import '../../../constants/assets.dart';
 import 'package:zartek_core/src/util/alert.dart';
 import 'package:zartek_core/src/util/navigation_service.dart';
@@ -71,50 +72,42 @@ class _SplashPageState extends ConsumerState<SplashPage> with SingleTickerProvid
         splashControllerProvider, (_, state) => _handleSplashState(state));
 
     return Scaffold(
-        body: CustomGradient(
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                horizontalSpaceSX,
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-          
-                    FadeTransition(
-                      opacity: _fadeAnimation,
-                      child: ScaleTransition(
-                        scale: _scaleAnimation,
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              Assets.appIcon,
-                              fit: BoxFit.cover,
-                              height: 140,
-                            ),
-
-
-                            // verticalSpaceMedium,
-                            // isLoading ? const CupertinoActivityIndicator(color: Colors.black,) : Container()
-                          ],
-                        ),
+        backgroundColor: Palette.black,
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: ScaleTransition(
+                      scale: _scaleAnimation,
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            Assets.appIcon,
+                            fit: BoxFit.cover,
+                            height: 140,
+                          ),
+                        ],
                       ),
                     ),
-                    verticalSpaceMedium,
-                    Text("Nizhal",style: AppTextStyle().titleLarge.copyWith(color: Colors.white),),
-                    // verticalSpaceLarge,
-                    // isLoading ? Column(
-                    //   children: [
-                    //     const CupertinoActivityIndicator(color: Colors.white,),
-                    //     verticalSpaceSmall,
-                    //     Text(textAlign: TextAlign.center,"Loading...",style: AppTextStyle().bodySmall.copyWith(color: Colors.white),),
-                    //   ],
-                    // ) : Container()
-                  ],
-                ),
-          
-              ],
-            ),
+                  ),
+                  // verticalSpaceMedium,
+                  // Text("Changathi",style: AppTextStyle().titleLarge.copyWith(color: Colors.white),),
+                  // verticalSpaceLarge,
+                  // isLoading ? Column(
+                  //   children: [
+                  //     const CupertinoActivityIndicator(color: Colors.white,),
+                  //     verticalSpaceSmall,
+                  //     Text(textAlign: TextAlign.center,"Loading...",style: AppTextStyle().bodySmall.copyWith(color: Colors.white),),
+                  //   ],
+                  // ) : Container()
+                ],
+              ),
+            ],
           ),
         ));
   }

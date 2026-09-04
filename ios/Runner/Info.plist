@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Nizhal</string>
+	<string>Changathi</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -71,13 +71,13 @@
 	<key>FacebookClientToken</key>
 	<string>f0ffa5c87fe54b5248c848a2afd29998</string>
 	<key>FacebookDisplayName</key>
-	<string>Nizhal</string>
+	<string>Changathi</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1517245456842762</string>
+				<string>fb151724545684276200000000</string>
 			</array>
 		</dict>
 	</array>

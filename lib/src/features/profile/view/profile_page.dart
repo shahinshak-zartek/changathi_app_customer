@@ -1,4 +1,4 @@
-import 'package:Nizhal/src/features/profile/view/webview_page.dart';
+import 'package:Changathi/src/features/profile/view/webview_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

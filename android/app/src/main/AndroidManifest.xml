@@ -10,7 +10,7 @@
         android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION"
         tools:node="remove" />
     <application
-        android:label="Nizhal"
+        android:label="Changathi"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
