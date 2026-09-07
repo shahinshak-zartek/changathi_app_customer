@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zartek_core/src/features/auth/controller/login_controller.dart';
 
 import '../../../app/app_text_style.dart';
+import '../../../app/palette.dart';
 import '../../../app/theme.dart';
 import '../../../util/ui_helper.dart';
 import '../../../widgets/custom_elevated_button.dart';
@@ -21,7 +22,11 @@ void showDeleteAccountDialog(BuildContext context) {
         child: Container(
           padding:  EdgeInsets.all(12.sp),
           decoration: BoxDecoration(
-            color: Colors.white,
+            // Matches the theme's dialogTheme.backgroundColor. This Container
+            // paints over the Dialog's own surface, so the theme alone could not
+            // darken it — and the text here is AppTextStyle white, which was
+            // white-on-white.
+            color: Palette.darkBackground,
             borderRadius: BorderRadius.circular(20.sp),
           ),
           child: Column(
@@ -35,7 +40,7 @@ void showDeleteAccountDialog(BuildContext context) {
                   child:  Icon(
                     Icons.close,
                     size: 24.sp,
-                    color: Colors.black87,
+                    color: Colors.white70,
                   ),
                 ),
               ),
@@ -75,7 +80,7 @@ void showDeleteAccountDialog(BuildContext context) {
               verticalSpaceMedium,
 
               // Warning points
-              Divider(color: Colors.grey.shade200,),
+              Divider(color: Colors.white24,),
               Container(
                 padding:  EdgeInsets.all(16.sp),
 
@@ -90,7 +95,7 @@ void showDeleteAccountDialog(BuildContext context) {
                   ],
                 ),
               ),
-              Divider(color: Colors.grey.shade200,),
+              Divider(color: Colors.white24,),
               verticalSpaceMedium,
               // Delete button
               Consumer(
@@ -126,7 +131,8 @@ Widget _buildWarningPoint(String text) {
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       CircleAvatar(
-        backgroundColor: Colors.black,
+        // Bullet dot — was black, i.e. invisible on the dark dialog surface.
+        backgroundColor: Palette.white,
         radius: 3.sp,
       ),
 

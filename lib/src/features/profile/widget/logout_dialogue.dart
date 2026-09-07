@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zartek_core/src/features/auth/controller/login_controller.dart';
 import '../../../app/app_text_style.dart';
+import '../../../app/palette.dart';
 import '../../../constants/assets.dart';
 import '../../../util/ui_helper.dart';
 import '../../../widgets/custom_elevated_button.dart';
@@ -21,7 +22,11 @@ void showLogoutAccountDialog(BuildContext context) {
         child: Container(
           padding:  EdgeInsets.all(24.sp),
           decoration: BoxDecoration(
-            color: Colors.white,
+            // Matches the theme's dialogTheme.backgroundColor. This Container
+            // paints over the Dialog's own surface, so the theme alone could not
+            // darken it — and the text here is AppTextStyle white, which was
+            // white-on-white.
+            color: Palette.darkBackground,
             borderRadius: BorderRadius.circular(20.sp),
           ),
           child: Column(
@@ -35,7 +40,7 @@ void showLogoutAccountDialog(BuildContext context) {
                   child:  Icon(
                     Icons.close,
                     size: 24.sp,
-                    color: Colors.black87,
+                    color: Colors.white70,
                   ),
                 ),
               ),
