@@ -1,4 +1,5 @@
 import 'package:Changathi/src/features/profile/view/webview_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,6 +18,7 @@ import '../widget/drawer_item.dart';
 import 'package:zartek_core/src/features/notification/controller/notification_controller.dart';
 
 import '../widget/logout_dialogue.dart';
+import '../../../widgets/gradient_iems.dart';
 import '../../../widgets/live_avatar.dart';
 import '../../../widgets/update_gate.dart';
 import '../widget/profile_delete_dialougue.dart';
@@ -45,6 +47,22 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     final currentUser = ref.watch(profileDataControllerProvider);
     final strings = ref.watch(appStringsProvider);
     return Scaffold(
+      // Profile is a pushed route (AppRouter.profile) rather than a nav tab, so
+      // it needs its own way back — matching wallet, recent activity and
+      // support, which all carry this bar.
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => NavigationService.pop(),
+          icon: GradientItems(
+            child: Icon(CupertinoIcons.back, color: Colors.white),
+          ),
+        ),
+        centerTitle: true,
+        title: Text(
+          strings.t(AppStringKey.profileTitle),
+          style: AppTextStyle().bodyLarge,
+        ),
+      ),
       body: LayoutBuilder(
 builder: (context, constraints) {
   return SingleChildScrollView(

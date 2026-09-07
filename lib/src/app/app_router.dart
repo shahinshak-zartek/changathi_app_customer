@@ -20,6 +20,7 @@ import '../features/notification/view/notification_screen.dart';
 import '../features/permission/view/microphone_permission.dart';
 import '../features/profile/view/blocked_user_page.dart';
 import '../features/profile/view/help_and_support.dart';
+import '../features/profile/view/profile_page.dart';
 import '../features/profile/view/language_edit.dart';
 import '../features/profile/view/profile_avatar_update.dart';
 import '../features/profile/view/webview_page.dart';
@@ -59,7 +60,7 @@ class AppRouter {
   static const filter = '/filter';
   static const allAdView = '/allAdView';
   static const singleAdView = '/singleAdView';
-  // static const profile = '/profile';
+  static const profile = '/profile';
   static const webviewPage = '/webviewPage';
   static const userInterest = '/userInterest';
   static const notifications = '/notifications';
@@ -107,6 +108,11 @@ class AppRouter {
         return getMaterialRoute(
           BlockedUserPage(message: settings.arguments as String),
         );
+      // Client-local route name: core's AppRoutes has profileAdd/profileEdit but
+      // no plain profile. Changathi reaches Profile by pushing it from the home
+      // app-bar avatar rather than as a nav tab, so it needs a route of its own.
+      case profile:
+        return getMaterialRoute(const ProfilePage());
       case AppRoutes.profileEdit:
         return getMaterialRoute(
           ProfileAvatarUpdate(userData: settings.arguments as UserData),

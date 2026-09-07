@@ -19,12 +19,14 @@ import '../../../app/route_observer.dart';
 import '../../../app/theme.dart';
 import '../../../constants/assets.dart';
 import '../../../util/ui_helper.dart';
+import '../../../app/app_router.dart';
 import '../../../widgets/live_avatar.dart';
 import '../../../widgets/oops_error.dart';
 import '../../../widgets/update_gate.dart';
 import '../widget/scroll_banner_widget.dart';
 import 'agent_list_screen.dart';
-import 'nav_bar.dart';
+// nav_bar.dart is no longer imported: its indexProvider and
+// profileTabNavigationProvider went away with the PageView.
 final homeIndexProvider = StateProvider<int>((ref) {
   return 0;
 });
@@ -117,13 +119,13 @@ class _HomePageState extends ConsumerState<HomePage>
     }
   }
 
-  bool _isOnHomeTab() {
-    try {
-      return ref.read(indexProvider) == 0;
-    } catch (_) {
-      return true;
-    }
-  }
+  /// Whether Home is the screen the customer is actually looking at.
+  ///
+  /// Guards the resume refresh so returning to the app while Profile (or any
+  /// pushed screen) is on top does not rebuild Home underneath. This used to ask
+  /// the PageView's tab index; Profile is a pushed route now, so the navigator
+  /// is the thing to ask.
+  bool _isOnHomeTab() => ModalRoute.of(context)?.isCurrent ?? true;
 
   @override
   void dispose() {
@@ -142,11 +144,8 @@ class _HomePageState extends ConsumerState<HomePage>
       }
     });
     ref.watch(homeDataProvider);
-    ref.listen<int>(indexProvider, (previous, next) {
-      if (next == 0 && previous != 0) {
-        _runHomeInit();
-      }
-    });
+    // The tab-index listener that used to re-init Home on tab switch is gone
+    // with the PageView — didPopNext() below covers returning from Profile.
     // Watch the controller, not the storage service. `preferenceStorageProvider`
     // holds a single instance installed by bootstrap and never replaced, so
     // watching it never fires a rebuild — the avatar here only refreshed when
@@ -188,11 +187,10 @@ class _HomePageState extends ConsumerState<HomePage>
           children: [
             GestureDetector(
               behavior: HitTestBehavior.opaque,
-              onTap: () {
-                ref
-                    .read(profileTabNavigationProvider.notifier)
-                    .update((state) => state + 1);
-              },
+              // Pushed as a real route (like the wallet below) rather than
+              // switched to as a tab — a page switch puts nothing on the
+              // navigator, so back from Profile used to exit the app.
+              onTap: () => NavigationService.push(page: AppRouter.profile),
               child: Container(
                 padding: EdgeInsets.all(2),
                 decoration: BoxDecoration(

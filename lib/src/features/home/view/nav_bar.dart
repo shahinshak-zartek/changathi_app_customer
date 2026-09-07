@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/legacy.dart';
+// StateProvider lives here — needed again if the two providers below come back.
+// import 'package:flutter_riverpod/legacy.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // Messaging is out of scope for Changathi — see the commented nav pill below.
 // These imports served only the pill and its chat guard; uncomment them together
@@ -19,16 +20,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import '../../chat/view/chat_list_screen.dart';
 import '../../../app/route_observer.dart';
 import '../../../widgets/update_gate.dart';
-import '../../profile/view/profile_page.dart';
 import 'home_page.dart';
 
-final indexProvider = StateProvider.autoDispose<int>((ref) {
-  return 0;
-});
-
-final profileTabNavigationProvider = StateProvider<int>((ref) {
-  return 0;
-});
+// Both providers existed only to drive the PageView's tab index. Profile is a
+// pushed route now (AppRouter.profile, from the home app-bar avatar), so nothing
+// reads either one. Restore them with the pill below.
+// final indexProvider = StateProvider.autoDispose<int>((ref) {
+//   return 0;
+// });
+//
+// final profileTabNavigationProvider = StateProvider<int>((ref) {
+//   return 0;
+// });
 
 class NavBar extends ConsumerStatefulWidget {
   const NavBar({super.key});
@@ -39,12 +42,14 @@ class NavBar extends ConsumerStatefulWidget {
 
 class _NavBarState extends ConsumerState<NavBar>
     with WidgetsBindingObserver, RouteAware {
-  PageController? _pageController;
+  // The PageView is gone — Home is the only page, and Profile is pushed as a
+  // route. Keeping a controller here would only re-enable the swipe.
+  // PageController? _pageController;
   // Only the chat-restriction guard used this.
   // int _lastAllowedIndex = 0;
   @override
   void initState() {
-    _pageController = PageController(initialPage: 0);
+    // _pageController = PageController(initialPage: 0);
 
     super.initState();
     WidgetsBinding.instance.addObserver(this);
@@ -65,16 +70,16 @@ class _NavBarState extends ConsumerState<NavBar>
   @override
   void didPopNext() {
     // Returning from a pushed route is a chance to catch a maintenance toggle
-    // flipped while the customer was inside a call, the wallet, a chat… The tab
-    // screens below live in a PageView and are built only once, so without this
-    // and onPageChanged the gate would only ever run at launch.
+    // flipped while the customer was inside a call, the wallet, Profile… Home is
+    // built once and kept alive underneath, so without this the gate would only
+    // ever run at launch.
     UpdateGate.checkForUpdate(context);
   }
 
   @override
   void dispose() {
     appRouteObserver.unsubscribe(this);
-    _pageController?.dispose();
+    // _pageController?.dispose();
     WidgetsBinding.instance.removeObserver(this); // Reset when page is disposed
     super.dispose();
   }
@@ -89,57 +94,30 @@ class _NavBarState extends ConsumerState<NavBar>
     // final showUnreadBadge =
     //     isChatFeatureEnabled && canChat && totalUnreadChatCount > 0;
 
-    // The home app-bar avatar tap drives this — with the pill commented out it
-    // is the only deliberate route to Profile, so the page index must match the
-    // PageView children below (Profile is 1 while chat is out of scope, 2 if
-    // ChatListScreen is restored).
-    ref.listen<int>(profileTabNavigationProvider, (previous, next) {
-      if (previous != next) {
-        _pageController?.animateToPage(
-          1,
-          duration: const Duration(milliseconds: 10),
-          curve: Curves.easeInOut,
-        );
-        ref.read(indexProvider.notifier).state = 1;
-      }
-    });
+    // The avatar-tap listener that animated the PageView to the Profile page is
+    // gone. HomePage now pushes AppRouter.profile instead, so Profile sits on
+    // the navigator and the back gesture pops it instead of exiting the app.
+    // ref.listen<int>(profileTabNavigationProvider, (previous, next) {
+    //   if (previous != next) {
+    //     _pageController?.animateToPage(
+    //       1,
+    //       duration: const Duration(milliseconds: 10),
+    //       curve: Curves.easeInOut,
+    //     );
+    //     ref.read(indexProvider.notifier).state = 1;
+    //   }
+    // });
     return Scaffold(
-      body: SafeArea(
-        child: PageView(
-          physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics(),
-          ),
-
-          controller: _pageController,
-          onPageChanged: (index) {
-            // The chat-restriction guard lived here and bounced any swipe to
-            // index 1. Index 1 is now Profile, so leaving it would have made
-            // Profile unreachable. Restore it with ChatListScreen, not before.
-            // if (index == 1 && !isChatFeatureEnabled) {
-            //   Alert.showToast("admin restricted your chat action");
-            //   WidgetsBinding.instance.addPostFrameCallback((_) {
-            //     _pageController?.jumpToPage(_lastAllowedIndex);
-            //     ref.read(indexProvider.notifier).state = _lastAllowedIndex;
-            //   });
-            //   return;
-            // }
-            // _lastAllowedIndex = index;
-            ref.read(indexProvider.notifier).update((state) => state = index);
-            // The tab screens are PageView children, built once, so their own
-            // initState cannot catch a mid-session maintenance toggle — this
-            // does. Placed after the chat-restriction guard so a bounced-back
-            // switch is not treated as a tab entry. Coalesced in UpdateGateState,
-            // so fast swiping does not stack Remote Config fetches.
-            UpdateGate.checkForUpdate(context);
-          },
-          // Messaging is out of scope for Changathi, so ChatListScreen is not a
-          // page here. Profile is therefore index 1, not 2 — if chat comes back,
-          // restore ChatListScreen in the middle AND bump the Profile index in
-          // the profileTabNavigationProvider listener above back to 2.
-          // children: [HomePage(), ChatListScreen(), ProfilePage()],
-          children: [HomePage(), ProfilePage()],
-        ),
-      ),
+      // Home is the only page. It was a PageView of [HomePage, ChatListScreen,
+      // ProfilePage]; chat is out of scope and Profile is a pushed route, so a
+      // PageView would only have re-added the horizontal swipe.
+      //
+      // To restore the tabbed layout: bring back the PageView with its
+      // controller, the onPageChanged handler (whose UpdateGate.checkForUpdate
+      // caught mid-session maintenance toggles that PageView children, built
+      // once, cannot), the two providers at the top of this file, and the pill
+      // below — then point the avatar tap back at profileTabNavigationProvider.
+      body: SafeArea(child: HomePage()),
       bottomNavigationBar: null,
       // ── Nav pill: commented out ──────────────────────────────────────────
       // Changathi has no messaging feature, and with only Home and Profile in
