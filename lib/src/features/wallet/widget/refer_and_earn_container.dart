@@ -85,9 +85,9 @@ class ReferAndEarnContainer extends ConsumerWidget {
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
-                            Palette.deepRoyalVioletBegin,
+                            Palette.deepRoyalPinkBegin,
                             Palette.deepRoyalVioletMid,
-                            Palette.deepRoyalVioletEnd,
+                            Palette.deepSkyBlueEnd,
                           ],
                         ),
                       ),

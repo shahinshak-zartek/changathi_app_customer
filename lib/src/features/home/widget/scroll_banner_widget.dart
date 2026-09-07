@@ -69,49 +69,103 @@ class _AutoScrollBannerState extends State<AutoScrollBanner> {
         itemCount: itemCount > 1 ? _virtualCount : itemCount,
         itemBuilder: (context, index) {
           final item = widget.items[index % itemCount];
+
           return Container(
-            padding: EdgeInsets.all(10.sp),
-            margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 6.h),
+            margin: EdgeInsets.symmetric(
+              horizontal: 5.w,
+              vertical: 6.h,
+            ),
+
+            // Gradient border width
+            padding: const EdgeInsets.all(1.2),
+
             decoration: BoxDecoration(
               gradient: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Palette.lightRoyalVioletBegin,
-                  Palette.lightRoyalVioletMid,
-                  Palette.lightRoyalVioletEnd,
+                  Palette.deepRoyalPinkBegin,
+                  Palette.deepRoyalVioletMid,
+                  Palette.deepSkyBlueEnd,
                 ],
               ),
               borderRadius: BorderRadius.circular(16.r),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    SvgPicture.asset(Assets.sparkles, width: 16.w, height: 16.h),
-                    SizedBox(width: 5.w),
-                    Expanded(
-                      child: Text(
-                        item?.title ?? "Invite Friends & Earn Coins",
-                        style: AppTextStyle().titleMedium.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
+
+              // Shadow
+              boxShadow: [
+                BoxShadow(
+                  color: Palette.deepRoyalVioletMid.withOpacity(0.25),
+                  blurRadius: 12,
+                  spreadRadius: 1,
+                  offset: const Offset(0, 4),
                 ),
-                SizedBox(height: 5.h),
-                Text(
-                  item?.description ?? "Share your referral code with friends and earn coins when they join and complete their registration.",
-                  style: AppTextStyle().bodyMedium.copyWith(color: Palette.black, height: 1.4),
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.35),
+                  blurRadius: 8,
+                  offset: const Offset(0, 3),
                 ),
               ],
+            ),
+
+            child: Container(
+              padding: EdgeInsets.all(10.sp),
+
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Palette.secondaryBlack,
+                    Palette.black,
+                    Palette.secondaryBlack,
+                  ],
+                ),
+
+                // Slightly smaller than outer radius
+                borderRadius: BorderRadius.circular(14.8.r),
+              ),
+
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        Assets.sparkles,
+                        width: 18.w,
+                        height: 18.h,
+                      ),
+
+                      SizedBox(width: 5.w),
+
+                      Expanded(
+                        child: Text(
+                          item?.title ?? "Invite Friends & Earn Coins",
+                          style: AppTextStyle().titleMedium.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 5.h),
+
+                  Text(
+                    item?.description ??
+                        "Share your referral code with friends and earn coins when they join and complete their registration.",
+                    style: AppTextStyle().bodyMedium.copyWith(
+                      color: Palette.fontDarkSecondary2,
+                      height: 1.4,
+                    ),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
           );
         },

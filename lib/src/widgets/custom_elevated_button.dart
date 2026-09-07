@@ -62,9 +62,9 @@ class CustomElevatedButton extends StatelessWidget {
             // color ?? Palette.gradient2begin,
             // color ?? Palette.gradient2mid,
             // color ?? Palette.gradient2end,
-            color ?? Palette.deepRoyalVioletBegin,
+            color ?? Palette.deepRoyalPinkBegin,
             color ?? Palette.deepRoyalVioletMid,
-            color ?? Palette.deepRoyalVioletEnd,
+            color ?? Palette.deepSkyBlueEnd,
 
             // color ?? Palette.gradient2end,
           ],

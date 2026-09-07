@@ -153,9 +153,10 @@ class _HomePageState extends ConsumerState<HomePage>
     final currentUser = ref.watch(profileDataControllerProvider);
     final strings = ref.watch(appStringsProvider);
     return Scaffold(
+      backgroundColor: Palette.black,
       appBar: AppBar(
-        backgroundColor: Palette.primary,
-        surfaceTintColor: Palette.primary,
+        backgroundColor: Colors.black,
+        surfaceTintColor: Colors.black,
         elevation: 0,
         automaticallyImplyLeading: false,
         toolbarHeight: kToolbarHeight + 15.h,
@@ -166,7 +167,7 @@ class _HomePageState extends ConsumerState<HomePage>
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
                 decoration: BoxDecoration(
-                  color: AppColors.white,
+                  color: AppColors.black,
                   borderRadius: BorderRadius.circular(15.r),
                   border: Border.all(width: 1, color: AppColors.primary),
                 ),
@@ -199,9 +200,9 @@ class _HomePageState extends ConsumerState<HomePage>
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      Palette.deepRoyalVioletBegin,
+                      Palette.deepRoyalPinkBegin,
                       Palette.deepRoyalVioletMid,
-                      Palette.deepRoyalVioletEnd,
+                      Palette.deepSkyBlueEnd    ,
                     ],
                   ),
                 ),
@@ -307,7 +308,7 @@ class _HomePageState extends ConsumerState<HomePage>
   // }
 
   Widget _walletContent(wallet) {
-    final strings = ref.read(appStringsProvider);
+    // final strings = ref.read(appStringsProvider);
     return GestureDetector(
       onTap: () => NavigationService.push(page: AppRoutes.wallet),
       child: Column(
@@ -326,15 +327,6 @@ class _HomePageState extends ConsumerState<HomePage>
                 ),
               ),
             ],
-          ),
-          SizedBox(height: 1.h),
-          Text(
-            strings.t(AppStringKey.addCoins),
-            style: TextStyle(
-              fontSize: 6.sp,
-              color: AppColors.primary,
-              fontWeight: FontWeight.w700,
-            ),
           ),
         ],
       ),

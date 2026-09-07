@@ -49,7 +49,7 @@ class AgentTile extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.r),
-            border: Border.all(color: Palette.deepRoyalVioletMid, width: 1.2),
+            border: Border.all(color: Palette.containerBorder, width: 1.2),
           ),
           child: Column(
             children: [
@@ -66,13 +66,12 @@ class AgentTile extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.all(2),
                           decoration: BoxDecoration(
-                            //todo crash fix
                             shape: BoxShape.circle,
                             gradient: LinearGradient(
                               colors: [
-                                Palette.deepRoyalVioletBegin,
+                                Palette.deepRoyalPinkBegin,
                                 Palette.deepRoyalVioletMid,
-                                Palette.deepRoyalVioletEnd,
+                                Palette.deepSkyBlueEnd,
                               ],
                             ),
                           ),
@@ -370,9 +369,9 @@ class AgentTile extends StatelessWidget {
                 ? null
                 : LinearGradient(
                     colors: [
-                      Palette.deepRoyalVioletBegin,
+                      Palette.deepRoyalPinkBegin,
                       Palette.deepRoyalVioletMid,
-                      Palette.deepRoyalVioletEnd,
+                      Palette.deepSkyBlueEnd,
                     ],
                   ),
             borderRadius: BorderRadius.circular(15.sp),

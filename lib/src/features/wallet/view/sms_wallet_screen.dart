@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zartek_core/src/features/wallet/controller/chat_plan_controller.dart';
 import 'package:zartek_core/src/features/wallet/controller/payment_gateway_controller.dart';
 import '../../../app/app_text_style.dart';
+import '../../../app/palette.dart';
 import '../../../util/ui_helper.dart';
 import '../../../widgets/oops_error.dart';
 import '../widget/payment_proced_bottom_sheet.dart';
@@ -18,6 +19,7 @@ class SmsWalletScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Palette.black,
       body: SizedBox(
         width: getWidth(context: context),
         height: getHeight(context: context),

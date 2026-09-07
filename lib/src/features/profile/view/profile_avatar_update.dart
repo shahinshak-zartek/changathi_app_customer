@@ -133,9 +133,9 @@ class _ProfileAvatarUpdateState extends State<ProfileAvatarUpdate> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Palette.deepRoyalVioletBegin,
+                    Palette.deepRoyalPinkBegin,
                     Palette.deepRoyalVioletMid,
-                    Palette.deepRoyalVioletEnd,
+                    Palette.deepSkyBlueEnd,
                   ],
                 ),
               ),

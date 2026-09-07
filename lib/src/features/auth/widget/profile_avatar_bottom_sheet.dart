@@ -96,9 +96,9 @@ Future<AvatarData?>showProfileAvatarBottomSheet(BuildContext context, {bool isEd
                                     gradient: isSelected
                                         ? const LinearGradient(
                                       colors: [
-                                        Palette.deepRoyalVioletBegin,
+                                        Palette.deepRoyalPinkBegin,
                                         Palette.deepRoyalVioletMid,
-                                        Palette.deepRoyalVioletEnd
+                                        Palette.deepSkyBlueEnd    ,
                                       ],
                                     )
                                         : null,

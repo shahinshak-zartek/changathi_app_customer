@@ -33,9 +33,9 @@ class MicrophonePermissionPage extends StatelessWidget {
                     shape: BoxShape.circle,
                     gradient: const LinearGradient(
                       colors: [
-                       Palette.deepRoyalVioletBegin,
+                       Palette.deepRoyalPinkBegin,
                        Palette.deepRoyalVioletMid,
-                       Palette.deepRoyalVioletEnd,
+                       Palette.deepSkyBlueEnd,
                       ],
                     ),
                   ),

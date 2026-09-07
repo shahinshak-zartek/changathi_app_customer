@@ -2,15 +2,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-
-import '../../../app/app_text_style.dart';
 import '../../../app/palette.dart';
 import '../../../constants/assets.dart';
 import 'package:zartek_core/src/util/alert.dart';
 import 'package:zartek_core/src/util/navigation_service.dart';
-import '../../../util/ui_helper.dart';
-import '../../../widgets/linear_gradient.dart';
 import 'package:zartek_core/src/features/splash/controllers/splash_controller.dart';
 
 class SplashPage extends ConsumerStatefulWidget {

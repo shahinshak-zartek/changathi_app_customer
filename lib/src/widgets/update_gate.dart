@@ -109,9 +109,9 @@ class UpdateGateState extends State<UpdateGate> {
     if (_result.type == UpdateType.maintenance) {
       final gradient = LinearGradient(
         colors: [
-          Palette.deepRoyalVioletBegin,
+          Palette.deepRoyalPinkBegin,
           Palette.deepRoyalVioletMid,
-          Palette.deepRoyalVioletEnd,
+          Palette.deepSkyBlueEnd,
         ],
       );
 
@@ -200,9 +200,9 @@ class UpdateGateState extends State<UpdateGate> {
     if (_result.type == UpdateType.force) {
       final gradient = LinearGradient(
         colors: [
-          Palette.deepRoyalVioletBegin,
+          Palette.deepRoyalPinkBegin,
           Palette.deepRoyalVioletMid,
-          Palette.deepRoyalVioletEnd,
+          Palette.deepSkyBlueEnd,
         ],
       );
 
@@ -356,9 +356,9 @@ class UpdateGateState extends State<UpdateGate> {
     if (_result.type == UpdateType.soft) {
       final gradient = LinearGradient(
         colors: [
-          Palette.deepRoyalVioletBegin,
+          Palette.deepRoyalPinkBegin,
           Palette.deepRoyalVioletMid,
-          Palette.deepRoyalVioletEnd,
+          Palette.deepSkyBlueEnd,
         ],
       );
 

@@ -1,12 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import '../app/app_text_style.dart';
-import '../app/palette.dart';
-import '../app/theme.dart';
-import '../app/theme_x.dart';
-import '../constants/assets.dart';
 
 class WhatsappContainer extends StatelessWidget {
   final VoidCallback onTap;
@@ -64,6 +59,6 @@ class WhatsappContainer extends StatelessWidget {
           ),
         ),
       ),
-    );;
+    );
   }
 }

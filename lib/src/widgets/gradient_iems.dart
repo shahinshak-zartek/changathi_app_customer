@@ -16,9 +16,9 @@ class GradientItems extends StatelessWidget {
 
         ]).createShader(bounds): LinearGradient(
           colors: [
-            Palette.deepRoyalVioletBegin,
-            Palette.deepRoyalVioletEnd,
+            Palette.deepRoyalPinkBegin,
             Palette.deepRoyalVioletMid,
+            Palette.deepSkyBlueEnd,
           ],
         ).createShader(bounds),
         child: child);

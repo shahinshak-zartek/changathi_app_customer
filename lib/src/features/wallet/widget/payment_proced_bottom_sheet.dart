@@ -259,7 +259,7 @@ class _GatewayOption extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color:
-                selected ? Palette.deepRoyalVioletBegin : Colors.grey.shade300,
+                selected ? Palette.deepRoyalPinkBegin : Colors.grey.shade300,
             width: selected ? 2 : 1,
           ),
         ),
@@ -269,7 +269,7 @@ class _GatewayOption extends StatelessWidget {
               selected
                   ? Icons.radio_button_checked
                   : Icons.radio_button_unchecked,
-              color: selected ? Palette.deepRoyalVioletBegin : Colors.grey,
+              color: selected ? Palette.deepRoyalPinkBegin : Colors.grey,
               size: 20.sp,
             ),
             horizontalSpaceSmall,

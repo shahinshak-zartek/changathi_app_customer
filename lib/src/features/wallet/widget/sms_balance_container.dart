@@ -21,8 +21,31 @@ class SmsBalanceContainer extends ConsumerWidget {
       width: getWidth(context: context) * 0.85,
       padding: EdgeInsets.all(15.sp),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15.sp),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Palette.deepRoyalPinkBegin,
+            Palette.deepRoyalVioletMid,
+            Palette.deepSkyBlueEnd,
+          ],
+        ),
+        borderRadius: BorderRadius.circular(16.r),
+
+        // Shadow
+        boxShadow: [
+          BoxShadow(
+            color: Palette.deepRoyalVioletMid.withOpacity(0.25),
+            blurRadius: 12,
+            spreadRadius: 1,
+            offset: const Offset(0, 4),
+          ),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.35),
+            blurRadius: 8,
+            offset: const Offset(0, 3),
+          ),
+        ],
       ),
       child: subState.when(
         loading: () => const Center(child: CupertinoActivityIndicator()),
@@ -96,9 +119,9 @@ class SmsBalanceContainer extends ConsumerWidget {
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               colors: [
-                                Palette.deepRoyalVioletBegin,
+                                Palette.deepRoyalPinkBegin,
                                 Palette.deepRoyalVioletMid,
-                                Palette.deepRoyalVioletEnd,
+                                Palette.deepSkyBlueEnd,
                               ],
                             ),
                             borderRadius: BorderRadius.circular(4),

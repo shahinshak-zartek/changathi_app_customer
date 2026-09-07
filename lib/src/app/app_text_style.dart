@@ -13,7 +13,7 @@ class AppTextStyle {
     // referenced with the package-qualified family name.
     fontFamily: 'packages/zartek_core/Poppins',
     // color: Palette.lightModeText,
-    color: Palette.black,
+    color: Palette.white,
     // letterSpacing: 1.5,
     fontWeight: AppFontWeight.regular,
   );
@@ -23,6 +23,7 @@ class AppTextStyle {
     return _baseTextStyle.copyWith(
       fontSize: 64.sp,
       fontWeight: AppFontWeight.bold,
+      color: Palette.white,
     );
   }
 
@@ -31,6 +32,7 @@ class AppTextStyle {
     return _baseTextStyle.copyWith(
       fontSize: 32.sp,
       fontWeight: AppFontWeight.bold,
+      color: Palette.white,
     );
   }
 
@@ -39,6 +41,7 @@ class AppTextStyle {
     return _baseTextStyle.copyWith(
       fontSize: 24.sp,
       fontWeight: AppFontWeight.bold,
+      color: Palette.white,
     );
   }
 
@@ -47,6 +50,7 @@ class AppTextStyle {
     return _baseTextStyle.copyWith(
       fontSize: 14.sp,
       fontWeight: AppFontWeight.bold,
+      color: Palette.white,
     );
   }
 
@@ -55,6 +59,7 @@ class AppTextStyle {
     return _baseTextStyle.copyWith(
       fontSize: 24.sp,
       fontWeight: FontWeight.w500,
+      color: Palette.white,
     );
   }
 
@@ -64,6 +69,7 @@ class AppTextStyle {
       fontSize: 20.sp,
       letterSpacing: 0.15,
       fontWeight: FontWeight.w600,
+      color: Palette.white,
     );
   }
 
@@ -73,6 +79,7 @@ class AppTextStyle {
       fontSize: 14.sp,
       letterSpacing: 1,
       fontWeight: FontWeight.bold,
+      color: Palette.white,
     );
   }
 
@@ -82,6 +89,7 @@ class AppTextStyle {
       fontSize: 11.sp,
       letterSpacing: .9,
       fontWeight: AppFontWeight.semiBold,
+      color: Palette.white,
     );
   }
 
@@ -91,6 +99,7 @@ class AppTextStyle {
       fontSize: 18.sp,
       letterSpacing: 0.9,
       fontWeight: AppFontWeight.regular,
+      color: Palette.white,
     );
   }
 
@@ -99,6 +108,7 @@ class AppTextStyle {
       fontSize: 16.sp,
       letterSpacing: 0.9,
       fontWeight: AppFontWeight.regular,
+      color: Palette.white,
     );
   }
 
@@ -108,6 +118,7 @@ class AppTextStyle {
       fontSize: 11.sp,
       letterSpacing: 0.6,
       fontWeight: AppFontWeight.regular,
+      color: Palette.white,
     );
   }
 
@@ -117,6 +128,7 @@ class AppTextStyle {
       fontSize: 10.sp,
       letterSpacing: 0.8,
       fontWeight: AppFontWeight.regular,
+      color: Palette.white,
     );
   }
   /// expertise Text Style
@@ -125,6 +137,7 @@ class AppTextStyle {
       fontSize: 9.sp,
       letterSpacing: 0.8,
       fontWeight: AppFontWeight.regular,
+      color: Palette.white,
     );
   }
 
@@ -134,6 +147,7 @@ class AppTextStyle {
       fontSize: 16.sp,
       fontWeight: AppFontWeight.light,
       letterSpacing: 1.1,
+      color: Palette.white,
     );
   }
 
@@ -142,6 +156,7 @@ class AppTextStyle {
       fontSize: 14.sp,
       fontWeight: AppFontWeight.semiBold,
       // letterSpacing: 1.25,
+      color: Palette.white,
     );
   }
 
@@ -151,6 +166,7 @@ class AppTextStyle {
       fontSize: 13.sp,
       fontWeight: AppFontWeight.semiBold,
       letterSpacing: 0.9,
+      color: Palette.white,
     );
   }
 }

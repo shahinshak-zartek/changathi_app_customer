@@ -20,17 +20,13 @@ class Palette {
   static const primary2 = Color(0xFF2D67B1);
   static const primary2Dark = Color(0xFF0A5E9B);
 
-  // static const gradient2begin = Color(0xFF12086F);
-  // static const gradient2beginTransper = Color(0x8012086F);
-  // static const gradient2end = Color(0xFF0095CC);
 
-  static const deepRoyalVioletBegin = Color(0xFF2e0287);
-  static const deepRoyalVioletMid = Color(0xFF5b25b9);
-  static const deepRoyalVioletEnd = Color(0xFF9751f8);
+  static const deepRoyalPinkBegin = Color(0xFFd72ebe);
+  static const deepRoyalVioletMid = Color(0xFFa31cc5);
+  static const deepSkyBlueEnd      = Color(0xFF2a6dcc);
 
-  static const lightRoyalVioletBegin = Color(0xFF7A5AD8);
-  static const lightRoyalVioletMid   = Color(0xFF9A7BF0);
-  static const lightRoyalVioletEnd   = Color(0xFFC0A2FF);
+  static const secondaryBlack      = Color(0xFF15131E);
+  static const containerBorder      = Color(0xFF59404A);
 
   static const gradient3begin = Color(0xFFFFF7AD);
   static const gradient3mid = Color(0xFFFFD0D3);

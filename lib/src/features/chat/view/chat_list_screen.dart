@@ -192,9 +192,9 @@ class _ChatListScreenState extends ConsumerState<ChatListScreen> {
                   shape: BoxShape.circle,
                   gradient: LinearGradient(
                     colors: [
-                      Palette.deepRoyalVioletBegin,
+                      Palette.deepRoyalPinkBegin,
                       Palette.deepRoyalVioletMid,
-                      Palette.deepRoyalVioletEnd,
+                      Palette.deepSkyBlueEnd,
                     ],
                   ),
                 ),

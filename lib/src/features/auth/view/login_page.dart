@@ -12,7 +12,6 @@ import 'package:zartek_core/src/util/alert.dart';
 import '../../../util/country_picker.dart';
 import 'package:zartek_core/src/util/phone_number_validator.dart';
 import '../../../util/ui_helper.dart';
-import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/text_form_field_input_decoration.dart';
 import 'package:zartek_core/src/core/localization/app_strings.dart';
 import 'package:zartek_core/src/features/auth/controller/login_controller.dart';
@@ -29,7 +28,7 @@ class LoginPage extends ConsumerStatefulWidget {
 }
 
 class _LoginPageState extends ConsumerState<LoginPage> {
-  static const _smsChannel = 'sms';
+  // static const _smsChannel = 'sms';
   static const _whatsappChannel = 'whatsapp';
 
   final _formKey = GlobalKey<FormBuilderState>();
@@ -41,8 +40,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final strings = ref.watch(appStringsProvider);
     final loginState = ref.watch(loginControllerProvider);
     final isLoginLoading = loginState is LoginStateLoading;
-    final isIndianNumber = phoneCode == "91";
-    final isSmsLoading = isLoginLoading && _loadingChannel == _smsChannel;
+    // final isIndianNumber = phoneCode == "91";
+    // final isSmsLoading = isLoginLoading && _loadingChannel == _smsChannel;
     final isWhatsappLoading =
         isLoginLoading && _loadingChannel == _whatsappChannel;
 

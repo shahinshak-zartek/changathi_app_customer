@@ -47,10 +47,13 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     final currentUser = ref.watch(profileDataControllerProvider);
     final strings = ref.watch(appStringsProvider);
     return Scaffold(
+      backgroundColor: Palette.black,
       // Profile is a pushed route (AppRouter.profile) rather than a nav tab, so
       // it needs its own way back — matching wallet, recent activity and
       // support, which all carry this bar.
       appBar: AppBar(
+        backgroundColor: Colors.black,
+        surfaceTintColor: Colors.black,
         leading: IconButton(
           onPressed: () => NavigationService.pop(),
           icon: GradientItems(
@@ -87,9 +90,9 @@ builder: (context, constraints) {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          Palette.deepRoyalVioletBegin,
+                          Palette.deepRoyalPinkBegin,
                           Palette.deepRoyalVioletMid,
-                          Palette.deepRoyalVioletEnd,
+                          Palette.deepSkyBlueEnd,
                         ],
                       )
                   ),
