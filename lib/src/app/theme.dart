@@ -58,8 +58,10 @@ class AppTheme {
     return ThemeData(
         colorScheme: _colorScheme,
         scaffoldBackgroundColor: _scaffoldBackground,
-        canvasColor: Palette.background,
-        dialogBackgroundColor: Palette.white,
+        canvasColor: Palette.black,
+        // Deprecated in favour of dialogTheme.backgroundColor, which is already
+        // Palette.darkBackground — kept in step so the two cannot disagree.
+        dialogBackgroundColor: Palette.darkBackground,
         appBarTheme: _appBarTheme,
         bottomNavigationBarTheme: _bottomNavigationBarTheme,
         textButtonTheme: _textButtonTheme,
@@ -86,68 +88,74 @@ class AppTheme {
   }
 
   CardThemeData get _cardTheme {
-    return const CardThemeData(color: Palette.white);
+    return const CardThemeData(color: Palette.cardBgDark);
   }
 
+  /// Black, matching the screens that set `Palette.black` by hand before this
+  /// moved into the theme (home, wallet, profile).
   Color get _scaffoldBackground {
-    return Palette.background;
+    return Palette.black;
   }
 
   ColorScheme get _colorScheme {
-    return const ColorScheme.light(
+    return const ColorScheme.dark(
       secondary: Palette.primary,
-      background: Palette.background,
+      surface: Palette.black,
     );
   }
 
   TextTheme get _textTheme => textTheme;
 
+  /// No `copyWith(color:)` here on purpose. `AppTextStyle` already defines every
+  /// style as `Palette.white`; these entries used to override that back to black
+  /// for a light scaffold, which is exactly what would go invisible now that the
+  /// scaffold is black. Letting AppTextStyle's own colour through keeps the
+  /// theme and the screens that call `AppTextStyle()` directly in agreement.
   TextTheme get textTheme {
     return TextTheme(
-      displayLarge:
-          AppTextStyle().displayLarge.copyWith(color: Palette.black),
-      displayMedium:
-          AppTextStyle().displayMedium.copyWith(color: Palette.black),
-      displaySmall:
-          AppTextStyle().displaySmall.copyWith(color: Palette.black),
-      headlineMedium:
-          AppTextStyle().headlineMedium.copyWith(color: Palette.black),
-      headlineSmall:
-          AppTextStyle().headlineSmall.copyWith(color: Palette.black),
-      titleLarge: AppTextStyle().titleLarge.copyWith(color: Palette.black),
-      titleMedium: AppTextStyle().titleMedium.copyWith(color: Palette.black),
-      titleSmall: AppTextStyle().titleSmall.copyWith(color: Palette.black),
-      bodyLarge: AppTextStyle().bodyLarge.copyWith(color: Palette.black),
-      bodyMedium: AppTextStyle().bodyMedium.copyWith(color: Palette.black),
-      bodySmall: AppTextStyle().bodySmall.copyWith(color: Palette.black),
-      labelLarge: AppTextStyle().labelLarge.copyWith(color: Palette.black),
-      labelSmall: AppTextStyle().labelSmall.copyWith(color: Palette.black),
+      displayLarge: AppTextStyle().displayLarge,
+      displayMedium: AppTextStyle().displayMedium,
+      displaySmall: AppTextStyle().displaySmall,
+      headlineMedium: AppTextStyle().headlineMedium,
+      headlineSmall: AppTextStyle().headlineSmall,
+      titleLarge: AppTextStyle().titleLarge,
+      titleMedium: AppTextStyle().titleMedium,
+      titleSmall: AppTextStyle().titleSmall,
+      bodyLarge: AppTextStyle().bodyLarge,
+      bodyMedium: AppTextStyle().bodyMedium,
+      bodySmall: AppTextStyle().bodySmall,
+      labelLarge: AppTextStyle().labelLarge,
+      labelSmall: AppTextStyle().labelSmall,
     );
   }
 
   AppBarTheme get _appBarTheme {
     return AppBarTheme(
-      backgroundColor: Palette.primary,
+      backgroundColor: Palette.black,
+      // Without this Material 3 tints the bar lighter as content scrolls under
+      // it, so a "black" bar drifts grey mid-scroll.
+      surfaceTintColor: Palette.black,
       elevation: 0.0,
       centerTitle: false,
-      iconTheme: const IconThemeData(color: Palette.black),
+      iconTheme: const IconThemeData(color: Palette.white),
       titleTextStyle:
-          AppTextStyle().titleMedium.copyWith(color: Palette.black),
-      systemOverlayStyle: SystemUiOverlayStyle.dark,
+          AppTextStyle().titleMedium.copyWith(color: Palette.white),
+      // Light status-bar icons — `.dark` would paint them black on a black bar.
+      systemOverlayStyle: SystemUiOverlayStyle.light,
     );
   }
 
   BottomNavigationBarThemeData get _bottomNavigationBarTheme {
     return const BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
-      backgroundColor: Palette.white,
-      selectedItemColor: Palette.black,
-      unselectedItemColor: Palette.fontDarkSecondary,
+      backgroundColor: Palette.black,
+      selectedItemColor: Palette.white,
+      unselectedItemColor: Palette.fontDarkSecondary2,
       selectedIconTheme: IconThemeData(
-        color: Palette.black,
+        color: Palette.white,
       ),
       unselectedIconTheme: IconThemeData(
-        color: Palette.fontDarkSecondary,
+        color: Palette.fontDarkSecondary2,
       ),
     );
   }
@@ -192,7 +200,10 @@ class AppTheme {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
-        backgroundColor: Palette.black,
+        // Was Palette.black — invisible now that the scaffold is black, and 28
+        // of the 30 ElevatedButton call sites inherit this. Brand accent
+        // instead, matching _textButtonTheme.foregroundColor and _sliderTheme.
+        backgroundColor: colors.secondary,
         textStyle: AppTextStyle().labelMedium.copyWith(color: Palette.white),
       ),
     );
@@ -242,8 +253,8 @@ class AppTheme {
           return null; // Default state (no overlay)
         },
       ),
-      labelColor: Palette.black,
-      unselectedLabelColor: Palette.black,
+      labelColor: Palette.white,
+      unselectedLabelColor: Palette.fontDarkSecondary2,
       indicatorSize: TabBarIndicatorSize.tab,
       labelStyle: AppTextStyle()
           .labelLarge
@@ -264,7 +275,9 @@ class AppTheme {
 
   BottomSheetThemeData get _bottomSheetTheme {
     return const BottomSheetThemeData(
-      backgroundColor: Palette.white,
+      // Lifted off black rather than white — sheet content uses AppTextStyle,
+      // which is white, so a white sheet would be white-on-white.
+      backgroundColor: Palette.darkBackgroundSecondary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
       ),
@@ -274,7 +287,7 @@ class AppTheme {
   InputDecorationTheme get _inputDecorationTheme {
     return InputDecorationTheme(
       filled: true,
-      fillColor: Palette.white,
+      fillColor: Palette.darkBackgroundSecondary,
       floatingLabelBehavior: FloatingLabelBehavior.never,
       border: InputBorder.none,
       labelStyle: AppTextStyle().bodySmall.copyWith(color: Palette.grey),
@@ -298,19 +311,19 @@ class AppTheme {
   }
 
   IconThemeData get _iconTheme {
-    return const IconThemeData(color: Palette.black);
+    return const IconThemeData(color: Palette.white);
   }
 
   CheckboxThemeData get _checkBoxTheme {
     return CheckboxThemeData(
-      checkColor: MaterialStateProperty.all(Palette.black),
+      checkColor: MaterialStateProperty.all(Palette.white),
       fillColor: MaterialStateProperty.all(Palette.transparent),
       // side: const BorderSide(color: Palette.black),
       side: MaterialStateBorderSide.resolveWith((states) {
         if (states.contains(MaterialState.selected)) {
-          return const BorderSide(color: Palette.black);
+          return const BorderSide(color: Palette.white);
         } else {
-          return const BorderSide(color: Palette.black);
+          return const BorderSide(color: Palette.white);
         }
       }),
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -326,16 +339,18 @@ class AppTheme {
   RadioThemeData get _radioTheme {
     return RadioThemeData(
         fillColor: MaterialStateProperty.resolveWith(
-          (states) => Palette.black,
+          (states) => Palette.white,
         ),
         overlayColor: MaterialStateProperty.resolveWith(
-          (states) => Palette.black,
+          (states) => Palette.white,
         ));
   }
 
   PopupMenuThemeData get _popupMenuTheme {
     return PopupMenuThemeData(
-      color: Palette.white,
+      // textStyle is AppTextStyle().bodyMedium (white), so the surface has to be
+      // dark or the menu is white-on-white.
+      color: Palette.darkBackgroundSecondary,
       textStyle: AppTextStyle().bodyMedium,
     );
   }
@@ -349,11 +364,15 @@ class AppTheme {
   }
 
   ListTileThemeData get _listTileTheme {
-    return const ListTileThemeData(iconColor: Palette.black);
+    return const ListTileThemeData(iconColor: Palette.white);
   }
 }
 
 /// Dark Mode App [ThemeData].
+///
+/// Unused — `app.dart` wires only `theme:`, and [AppTheme] above is now dark, so
+/// this class is dead code kept for reference. Do not "fix" it expecting a
+/// visible change.
 class AppDarkTheme {
   ThemeData get theme {
     return ThemeData(
