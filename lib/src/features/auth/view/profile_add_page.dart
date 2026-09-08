@@ -304,7 +304,11 @@ class _ProfileAddPageState extends ConsumerState<ProfileAddPage> {
                                 },
                                 child: ShaderMask(
                                   shaderCallback: (bounds) => const LinearGradient(
-                                    colors: [Color(0xFF4C1D95), Color(0xFF8B5CF6)],
+                                    colors: [
+                                      Color(0xFFd72ebe),
+                                      Color(0xFFa31cc5),
+                                      Color(0xFF2a6dcc),
+                                    ],
                                   ).createShader(bounds),
                                   child: Text(
                                     textAlign: TextAlign.center,
@@ -338,7 +342,11 @@ class _ProfileAddPageState extends ConsumerState<ProfileAddPage> {
                                 },
                                 child: ShaderMask(
                                   shaderCallback: (bounds) => const LinearGradient(
-                                    colors: [Color(0xFF4C1D95), Color(0xFF8B5CF6)],
+                                    colors: [
+                                      Color(0xFFd72ebe),
+                                      Color(0xFFa31cc5),
+                                      Color(0xFF2a6dcc),
+                                    ],
                                   ).createShader(bounds),
                                   child: Text(
                                     textAlign: TextAlign.center,

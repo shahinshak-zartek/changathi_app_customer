@@ -1,14 +1,13 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zartek_core/src/features/profile/model/legal_page_detail_model.dart';
-
 import '../../../app/app_text_style.dart';
 import '../../../app/palette.dart';
 import 'package:zartek_core/src/util/navigation_service.dart';
 import '../../../util/ui_helper.dart';
+import '../../../app/palette.dart';
 
 showTermsAndConditionBottomSheet(
   BuildContext context, {
@@ -39,7 +38,7 @@ showTermsAndConditionBottomSheet(
                 height: getHeight(context: context) * 0.8,
       
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Palette.cardBgDark,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(40),
                     topRight: Radius.circular(40),
@@ -90,7 +89,7 @@ showTermsAndConditionBottomSheet(
                       padding: EdgeInsets.all(5.sp),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.white,
+                        color: Colors.black,
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black.withValues(alpha: 0.15),
@@ -100,7 +99,7 @@ showTermsAndConditionBottomSheet(
                           ),
                         ],
                       ),
-                      child: Icon(Icons.close, color: Palette.black, size: 16.sp,),
+                      child: Icon(Icons.close, color: Palette.white, size: 16.sp,),
                     ),
                   ),
                 ),

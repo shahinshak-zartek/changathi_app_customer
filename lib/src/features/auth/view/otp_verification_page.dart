@@ -93,7 +93,7 @@ class _OtpVerificationPageState extends ConsumerState<OtpVerificationPage> {
             strings.t(AppStringKey.enterOtpSent),
             style: AppTextStyle().bodyMedium,
           ),
-          Text(textAlign: TextAlign.center,widget.loginAddBodyModel.phone,style: AppTextStyle().titleMedium.copyWith(color:AppColors.black ),),
+          Text(textAlign: TextAlign.center,widget.loginAddBodyModel.phone,style: AppTextStyle().titleMedium.copyWith(color:AppColors.white ),),
           verticalSpaceMedium,
           Padding(
             padding:  EdgeInsets.symmetric(horizontal: 25.0.w),
@@ -113,9 +113,9 @@ class _OtpVerificationPageState extends ConsumerState<OtpVerificationPage> {
                     height: 50,
                     textStyle: context.bodyLarge().copyWith(color: Palette.fontDark),
                     decoration: BoxDecoration(
-                      color: AppColors.white,
-                      border: Border.all(color: Palette.deepRoyalVioletMid,width: 1.5),
-                      borderRadius: BorderRadius.circular(8),
+                      color: AppColors.black,
+                      border: Border.all(color: Palette.deepRoyalVioletMid,width: 2),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                   ),
                   focusedPinTheme: PinTheme(
@@ -125,7 +125,7 @@ class _OtpVerificationPageState extends ConsumerState<OtpVerificationPage> {
                     decoration: BoxDecoration(
                       color: AppColors.white,
                       border: Border.all(color: Palette.deepRoyalVioletMid,width: 1.5),
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                   ),
                   defaultPinTheme: PinTheme(
@@ -167,8 +167,9 @@ class _OtpVerificationPageState extends ConsumerState<OtpVerificationPage> {
                           ShaderMask(
                               shaderCallback: (bounds) => const LinearGradient(
                                 colors: [
-                                  Color(0xFFFF4B4B),
-                                  Color(0xFF8B5CF6),
+                                  Color(0xFFd72ebe),
+                                  Color(0xFFa31cc5),
+                                  Color(0xFF2a6dcc),
                                 ],
                               ).createShader(bounds),
                               child:  Text(

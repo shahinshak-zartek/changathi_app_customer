@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:Changathi/src/app/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -116,7 +117,7 @@ class _PaymentProceedSheetState extends ConsumerState<_PaymentProceedSheet> {
         child: Container(
           padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
           decoration: const BoxDecoration(
-            color: Colors.white,
+            color: Colors.black,
             borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
           ),
           child: Column(

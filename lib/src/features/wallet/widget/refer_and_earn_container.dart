@@ -45,35 +45,53 @@ class ReferAndEarnContainer extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: getWidth(context: context) * 0.63,
-                    padding: EdgeInsets.all(5.sp),
+                    width: getWidth(context: context) * 0.68,
                     height: 60.h,
+                    padding: EdgeInsets.all(1.w), // Gradient border width
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.sp),
-                      color: Colors.white,
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Palette.deepRoyalPinkBegin,
+                          Palette.deepRoyalVioletMid,
+                          Palette.deepSkyBlueEnd,
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(16.r),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 4.0.w),
-                          child: Text(
-                            fullCode,
-                            style: AppTextStyle().bodyMedium.copyWith(
-                              color: const Color(0xff0088FF),
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(15.sp,10.sp,0.sp,10.sp),
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(15.r),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 4.w),
+                            child: Text(
+                              fullCode,
+                              style: AppTextStyle().bodyMedium.copyWith(
+                                color: const Color(0xff0088FF),
+                              ),
                             ),
                           ),
-                        ),
-                        IconButton(
-                          onPressed: () => _copyToClipboard(fullCode),
-                          icon: GradientItems(
-                            child: Icon(Icons.copy, size: 16.sp, color: Colors.white,),
+                          IconButton(
+                            onPressed: () => _copyToClipboard(fullCode),
+                            icon: GradientItems(
+                              child: Icon(
+                                Icons.copy,
+                                size: 16.sp,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-
                   GestureDetector(
                     onTap: () => _shareReferral(ref, fullCode),
                     child: Container(

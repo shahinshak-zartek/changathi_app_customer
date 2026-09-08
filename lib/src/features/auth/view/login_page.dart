@@ -104,6 +104,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                            decoration: buildInputDecoration(context,
                              labelColor: Colors.grey,
                              borderRadius: BorderRadius.circular(16),
+                             borderColor: Palette.cardBgDark,
                              fillColor: Palette.darkBackground,
                              prefixIcon: GestureDetector(
                                behavior: HitTestBehavior.opaque,
@@ -216,6 +217,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           shaderCallback: (bounds) => const LinearGradient(
                             colors: [
                               Color(0xFFd72ebe),
+                              Color(0xFFa31cc5),
                               Color(0xFF2a6dcc),
                             ],
                           ).createShader(bounds),

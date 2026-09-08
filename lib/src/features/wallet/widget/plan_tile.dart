@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 
 import '../../../app/app_text_style.dart';
+import '../../../app/palette.dart';
 import '../../../app/theme.dart';
 import '../../../constants/assets.dart';
 import 'package:zartek_core/src/features/wallet/model/recharge_plan_model.dart';
@@ -32,7 +33,7 @@ class PlanTile extends StatelessWidget {
         onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
-            color: AppColors.white,
+            color:  Palette.secondaryBlack,
             borderRadius: BorderRadius.circular(15),
 
           ),
