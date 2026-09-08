@@ -147,7 +147,7 @@ class AgentTile extends StatelessWidget {
                                 ),
                               ),
                             ] else ...[
-                              Column(
+                              Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   if (agentIsOnline &&
@@ -159,14 +159,14 @@ class AgentTile extends StatelessWidget {
                                       agent.video_enabled &&
                                       agent.video_rate > 0 &&
                                       isVideoCallFeatureEnabled) ...[
-                                    verticalSpaceSmall,
+                                    horizontalSpaceSX,
                                     videoContainer(context),
                                   ],
                                 ],
                               ),
                             ],
-                            horizontalSpaceSmall,
-                            chatContainer(context),
+                            // horizontalSpaceSmall,
+                            // chatContainer(context),
                           ],
                         ),
                       ),
@@ -214,57 +214,57 @@ class AgentTile extends StatelessWidget {
                       verticalSpaceTiny,
 
                       /// Rates
-                      Row(
-                        children: [
-                          Visibility(
-                            visible: agent.audio_enabled && agent.audio_rate > 0 && isAudioCallFeatureEnabled,
-                            child: Row(
-                              children: [
-                                Icon(
-                                  CupertinoIcons.phone,
-                                  color: Colors.black,
-                                  size: 13.sp,
-                                ),
-                                horizontalSpaceTiny,
-                                Text(
-                                  "${_formatRate(agent.audio_rate)} ",
-                                  style: AppTextStyle().titleSmall,
-                                ),
-                                SvgPicture.asset(
-                                  Assets.coin,
-                                  width: 13.w,
-                                  height: 13.h,
-                                ),
-                                Text(" /sec", style: AppTextStyle().titleSmall),
-                              ],
-                            ),
-                          ),
-                          horizontalSpaceSmall,
-                          Visibility(
-                            visible: agent.video_enabled && agent.video_rate > 0 && isVideoCallFeatureEnabled,
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.videocam_outlined,
-                                  color: Colors.black,
-                                  size: 13.sp,
-                                ),
-                                horizontalSpaceTiny,
-                                Text(
-                                  "${_formatRate(agent.video_rate)} ",
-                                  style: AppTextStyle().titleSmall,
-                                ),
-                                SvgPicture.asset(
-                                  Assets.coin,
-                                  width: 15.w,
-                                  height: 13.h,
-                                ),
-                                Text(" /sec", style: AppTextStyle().titleSmall),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                      // Row(
+                      //   children: [
+                      //     Visibility(
+                      //       visible: agent.audio_enabled && agent.audio_rate > 0 && isAudioCallFeatureEnabled,
+                      //       child: Row(
+                      //         children: [
+                      //           Icon(
+                      //             CupertinoIcons.phone,
+                      //             color: Colors.black,
+                      //             size: 13.sp,
+                      //           ),
+                      //           horizontalSpaceTiny,
+                      //           Text(
+                      //             "${_formatRate(agent.audio_rate)} ",
+                      //             style: AppTextStyle().titleSmall,
+                      //           ),
+                      //           SvgPicture.asset(
+                      //             Assets.coin,
+                      //             width: 13.w,
+                      //             height: 13.h,
+                      //           ),
+                      //           Text(" /sec", style: AppTextStyle().titleSmall),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //     horizontalSpaceSmall,
+                      //     Visibility(
+                      //       visible: agent.video_enabled && agent.video_rate > 0 && isVideoCallFeatureEnabled,
+                      //       child: Row(
+                      //         children: [
+                      //           Icon(
+                      //             Icons.videocam_outlined,
+                      //             color: Colors.black,
+                      //             size: 13.sp,
+                      //           ),
+                      //           horizontalSpaceTiny,
+                      //           Text(
+                      //             "${_formatRate(agent.video_rate)} ",
+                      //             style: AppTextStyle().titleSmall,
+                      //           ),
+                      //           SvgPicture.asset(
+                      //             Assets.coin,
+                      //             width: 15.w,
+                      //             height: 13.h,
+                      //           ),
+                      //           Text(" /sec", style: AppTextStyle().titleSmall),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                     ],
                     ),
                   ),
@@ -291,22 +291,31 @@ class AgentTile extends StatelessWidget {
       child: Opacity(
         opacity: isRestricted || !agent.audio_allowed ? 0.4 : 1.0,
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 14.sp, vertical: 9.sp),
+          width: 48.sp,
+          height: 48.sp,
           decoration: BoxDecoration(
-            color: isRestricted ? Colors.red.shade300 : const Color(0xFF7A5AD8),
-            borderRadius: BorderRadius.circular(15.sp),
-          ),
-          child: Row(
-            children: [
-              Text(
-                "Audio call",
-                style: AppTextStyle().titleSmall.copyWith(
-                  color: AppColors.white,
-                ),
+            color: isRestricted
+                ? Colors.red.shade300
+                : const Color(0xFFd72ebe),
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: (isRestricted
+                    ? Colors.red.shade300
+                    : const Color(0xFFd72ebe))
+                    .withOpacity(0.4),
+                blurRadius: 10,
+                spreadRadius: 2,
+                offset: const Offset(0, 4),
               ),
-              horizontalSpaceTiny,
-              Icon(CupertinoIcons.phone, color: Colors.white, size: 15.sp),
             ],
+          ),
+          child: Center(
+            child: Icon(
+              CupertinoIcons.phone,
+              color: Colors.white,
+              size: 20.sp,
+            ),
           ),
         ),
       ),
@@ -326,26 +335,34 @@ class AgentTile extends StatelessWidget {
       child: Opacity(
         opacity: isRestricted || !agent.video_allowed ? 0.4 : 1.0,
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 14.sp, vertical: 9.sp),
+          width: 48.sp,
+          height: 48.sp,
           decoration: BoxDecoration(
-            color: isRestricted ? Colors.red.shade300 : const Color(0xFF7A5AD8),
-            borderRadius: BorderRadius.circular(15.sp),
+            color: isRestricted
+                ? Colors.red.shade300
+                : const Color(0xFFd72ebe),
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: (isRestricted
+                    ? Colors.red.shade300
+                    : const Color(0xFFd72ebe))
+                    .withOpacity(0.4),
+                blurRadius: 10,
+                spreadRadius: 2,
+                offset: const Offset(0, 4),
+              ),
+            ],
           ),
-          child:
-            Row(
-              children: [
-                Text(
-                  "Video call",
-                  style: AppTextStyle().titleSmall.copyWith(
-                    color: AppColors.white,
-                  ),
-                ),
-                horizontalSpaceTiny,
-                Icon(Icons.video_call, color: Colors.white, size: 15.sp),
-              ],
+          child: Center(
+            child: Icon(
+              CupertinoIcons.video_camera,
+              color: Colors.white,
+              size: 25.sp,
             ),
           ),
         ),
+      )
       );
   }
 

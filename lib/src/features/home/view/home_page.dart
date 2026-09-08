@@ -20,6 +20,7 @@ import '../../../app/theme.dart';
 import '../../../constants/assets.dart';
 import '../../../util/ui_helper.dart';
 import '../../../app/app_router.dart';
+import '../../../widgets/gradient_iems.dart';
 import '../../../widgets/live_avatar.dart';
 import '../../../widgets/oops_error.dart';
 import '../../../widgets/update_gate.dart';
@@ -49,16 +50,16 @@ class _HomePageState extends ConsumerState<HomePage>
   void initState() {
     // Audio/Video filter tabs are hidden for now — length must equal the
     // number of TabBarView children below (restore to 3 when re-enabling).
-    tabs = TabController(length: 1, vsync: this);
+    tabs = TabController(length: 3, vsync: this);
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _runHomeInit();
     });
     // Always reset to first tab when entering screen
-    // Future.microtask(() {
-    //   ref.read(homeIndexProvider.notifier).state = 0;
-    //   tabs?.index = 0;
-    // });
+    Future.microtask(() {
+      ref.read(homeIndexProvider.notifier).state = 0;
+      tabs?.index = 0;
+    });
     tabs?.addListener(() {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
         ref
@@ -137,7 +138,7 @@ class _HomePageState extends ConsumerState<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    // final selectIndex = ref.watch(homeIndexProvider);
+    final selectIndex = ref.watch(homeIndexProvider);
     ref.listen<int>(resetHomeAgentFilterProvider, (previous, next) {
       if (previous != next) {
         _resetAgentFilterToAll();
@@ -256,27 +257,28 @@ class _HomePageState extends ConsumerState<HomePage>
               ),
             ),
             verticalSpaceTinyS,
-            // SizedBox(
-            //   child: TabBar(
-            //     dividerColor: Colors.transparent,
-            //     indicator: const BoxDecoration(),
-            //     controller: tabs,
-            //
-            //     tabs: [
-            //        _buildTab(strings.t(AppStringKey.tabAll), selectIndex == 0),
-            //        _buildTab(strings.t(AppStringKey.tabAudio), selectIndex == 1),
-            //        _buildTab(strings.t(AppStringKey.tabVideo), selectIndex == 2),
-            //     ],
-            //   ),
-            // ),
+            SizedBox(
+              child: TabBar(
+                dividerColor: Colors.transparent,
+                indicator: const BoxDecoration(),
+                controller: tabs,
+                tabs: [
+                   _buildTab(strings.t(AppStringKey.tabAll), selectIndex == 0),
+                   _buildTab(strings.t(AppStringKey.tabAudio), selectIndex == 1),
+                   _buildTab(strings.t(AppStringKey.tabVideo), selectIndex == 2),
+                ],
+              ),
+            ),
+            // verticalSpaceTinyS,
+            // Text("Video call rate: ${default_audio_coins_per_second} Audio call rate: ${default_video_coins_per_second}"),
             verticalSpaceTinyS,
             Expanded(
               child: TabBarView(
                 controller: tabs,
                 children: const [
                   AgentListScreen(filterType: AgentFilterType.all),
-                  // AgentListScreen(filterType: AgentFilterType.audio),
-                  // AgentListScreen(filterType: AgentFilterType.video),
+                  AgentListScreen(filterType: AgentFilterType.audio),
+                  AgentListScreen(filterType: AgentFilterType.video),
                 ],
               ),
             ),
@@ -286,26 +288,26 @@ class _HomePageState extends ConsumerState<HomePage>
     );
   }
 
-  // Widget _buildTab(String label, bool selected) {
-  //   bool isSelected = selected;
-  //   return SizedBox(
-  //     child: Padding(
-  //       padding: const EdgeInsets.all(8.0),
-  //       child: Center(
-  //         child: GradientItems(
-  //           gradient: !isSelected,
-  //           child: Text(
-  //             label,
-  //             style: AppTextStyle().labelSmall.copyWith(
-  //               color: Colors.white,
-  //               fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-  //             ),
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
+  Widget _buildTab(String label, bool selected) {
+    bool isSelected = selected;
+    return SizedBox(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: GradientItems(
+            gradient: !isSelected,
+            child: Text(
+              label,
+              style: AppTextStyle().labelSmall.copyWith(
+                color: Colors.white,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget _walletContent(wallet) {
     // final strings = ref.read(appStringsProvider);

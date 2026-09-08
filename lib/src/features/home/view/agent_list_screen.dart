@@ -166,69 +166,69 @@ class _AgentListScreenState extends State<AgentListScreen> {
                   isVideoCallFeatureEnabled: isVideoCallEnabled,
                   isAudioCallFeatureEnabled: isAudioCallEnabled,
                   isChatFeatureEnabled: isChatEnabled,
-                  onTapChat: () {
-                    if (!isChatEnabled) {
-                      Alert.showToast("admin restricted your chat action");
-                      return;
-                    }
-                    final chatAccess = ref.read(chatAccessControllerProvider);
-                    if (chatAccess.isLoading) {
-                      Alert.showToast(
-                        "Checking chat access. Please try again.",
-                      );
-                      return;
-                    }
-
-                    final bootstrap = chatAccess.value;
-                    if (chatAccess.hasError || bootstrap == null) {
-                      Alert.showToast(
-                        "Chat access is currently unavailable. Please try again.",
-                      );
-                      return;
-                    }
-
-                    // Opening the thread is gated on can_view; can_chat still
-                    // gates *sending* inside ChatScreen, so a view-only user is
-                    // not given a way to send.
-                    final canView = ref.read(canViewProvider);
-                    final rawReason = ref.read(chatReasonProvider);
-                    final reason = rawReason ?? "don't have access";
-                    // Only offer Purchase when buying a plan is actually the
-                    // fix — an admin block is not solved by spending money.
-                    final showPurchase = chatReasonNeedsPurchase(rawReason);
-
-                    if (!canView) {
-                      Alert.showToast(
-                        strings.tf(AppStringKey.cannotProceedBecause, {
-                          'reason': reason,
-                        }),
-                        isLong: true,
-                        actionLabel: showPurchase ? 'Purchase' : null,
-                        actionIcon: showPurchase ? Assets.coin : null,
-                        onActionPressed: showPurchase
-                            ? () {
-                                NavigationService.push(
-                                  page: AppRoutes.wallet,
-                                  arguments: 1, // chat-plan tab
-                                );
-                              }
-                            : null,
-                      );
-                      return;
-                    }
-
-                    final user = ChatUser(
-                      userId: 0,
-                      email: agent.email,
-                      fullName: agent.name,
-                      isActive: agent.status == "online",
-                      isPinned: false,
-                      unreadMessages: 0,
-                      avatarUrl: agent.avatar_url,
-                      lastMessage: null,
-                    );
-                    NavigationService.push(page: AppRoutes.singleChat, arguments: user,);
-                  },
+                  // onTapChat: () {
+                  //   if (!isChatEnabled) {
+                  //     Alert.showToast("admin restricted your chat action");
+                  //     return;
+                  //   }
+                  //   final chatAccess = ref.read(chatAccessControllerProvider);
+                  //   if (chatAccess.isLoading) {
+                  //     Alert.showToast(
+                  //       "Checking chat access. Please try again.",
+                  //     );
+                  //     return;
+                  //   }
+                  //
+                  //   final bootstrap = chatAccess.value;
+                  //   if (chatAccess.hasError || bootstrap == null) {
+                  //     Alert.showToast(
+                  //       "Chat access is currently unavailable. Please try again.",
+                  //     );
+                  //     return;
+                  //   }
+                  //
+                  //   // Opening the thread is gated on can_view; can_chat still
+                  //   // gates *sending* inside ChatScreen, so a view-only user is
+                  //   // not given a way to send.
+                  //   final canView = ref.read(canViewProvider);
+                  //   final rawReason = ref.read(chatReasonProvider);
+                  //   final reason = rawReason ?? "don't have access";
+                  //   // Only offer Purchase when buying a plan is actually the
+                  //   // fix — an admin block is not solved by spending money.
+                  //   final showPurchase = chatReasonNeedsPurchase(rawReason);
+                  //
+                  //   if (!canView) {
+                  //     Alert.showToast(
+                  //       strings.tf(AppStringKey.cannotProceedBecause, {
+                  //         'reason': reason,
+                  //       }),
+                  //       isLong: true,
+                  //       actionLabel: showPurchase ? 'Purchase' : null,
+                  //       actionIcon: showPurchase ? Assets.coin : null,
+                  //       onActionPressed: showPurchase
+                  //           ? () {
+                  //               NavigationService.push(
+                  //                 page: AppRoutes.wallet,
+                  //                 arguments: 1, // chat-plan tab
+                  //               );
+                  //             }
+                  //           : null,
+                  //     );
+                  //     return;
+                  //   }
+                  //
+                  //   final user = ChatUser(
+                  //     userId: 0,
+                  //     email: agent.email,
+                  //     fullName: agent.name,
+                  //     isActive: agent.status == "online",
+                  //     isPinned: false,
+                  //     unreadMessages: 0,
+                  //     avatarUrl: agent.avatar_url,
+                  //     lastMessage: null,
+                  //   );
+                  //   NavigationService.push(page: AppRoutes.singleChat, arguments: user,);
+                  // },
                   onTapVoiceCall: () async {
                     if (!isAudioCallEnabled) {
                       Alert.showToast(
