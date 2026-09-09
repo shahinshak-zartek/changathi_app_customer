@@ -112,47 +112,50 @@ builder: (context, constraints) {
                   style: AppTextStyle().bodyMedium
                       .copyWith(fontWeight: FontWeight.w400),
                 ),
-               verticalSpaceSmall,
-
-                InkWell(
-                  onTap: () async {
-                     await NavigationService.push(page: AppRoutes.profileEdit,arguments: currentUser.data);
-                  },
-                  child:  DrawerItem(title: strings.t(AppStringKey.profileTitle), width: 12,image: Assets.profile),
-                ),
-                InkWell(
-                  onTap: () {
-                    NavigationService.push(page: AppRoutes.wallet);
-                  },
-                  child:  DrawerItem(title: strings.t(AppStringKey.walletTitle), width: 6,image: Assets.wallet),
-                ),
-                InkWell(
-                  onTap: () {
-                    NavigationService.push(page: AppRoutes.recentActivity);
-                  },
-                  child:  DrawerItem(title: strings.t(AppStringKey.callHistory), width: 6,image: Assets.historyCall),
-                ),
-                Consumer(
-                  builder: (context, ref, child) {
-                    final notifState = ref.watch(notificationControllerProvider);
-                    int unreadCount = 0;
-                    notifState.maybeWhen(
-                      success: (notification, _) {
-                        unreadCount = notification?.data?.unread_count ?? 0;
-                      },
-                      orElse: () {},
-                    );
-                    return InkWell(
-                      onTap: () {
-                        // ref.read(notificationControllerProvider.notifier).markAllReadOnOpen();
-                        NavigationService.push(page: AppRoutes.notification);
-                      },
-                      child: DrawerItem(
-                        title: strings.t(AppStringKey.notifications),
-                        width: 6,
-                        image: Assets.notificationGrey,
-                        trailing: unreadCount > 0
-                            ? Container(
+                verticalSpaceMedium,
+                Container(
+                  decoration: BoxDecoration(
+                    color: Palette.secondaryBlack,
+                    borderRadius: BorderRadius.circular(20.r),
+                    border: Border.all(
+                      color: Colors.grey.withOpacity(0.3),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      InkWell(
+                        onTap: () async {
+                           await NavigationService.push(page: AppRoutes.profileEdit,arguments: currentUser.data);
+                        },
+                        child:  DrawerItem(title: strings.t(AppStringKey.profileTitle), width: 12,image: Assets.profile),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          NavigationService.push(page: AppRoutes.wallet);
+                        },
+                        child:  DrawerItem(title: strings.t(AppStringKey.walletTitle), width: 6,image: Assets.wallet),
+                      ),
+                      Consumer(
+                        builder: (context, ref, child) {
+                          final notifState = ref.watch(notificationControllerProvider);
+                          int unreadCount = 0;
+                          notifState.maybeWhen(
+                            success: (notification, _) {
+                              unreadCount = notification?.data?.unread_count ?? 0;
+                            },
+                            orElse: () {},
+                          );
+                          return InkWell(
+                            onTap: () {
+                              // ref.read(notificationControllerProvider.notifier).markAllReadOnOpen();
+                              NavigationService.push(page: AppRoutes.notification);
+                            },
+                            child: DrawerItem(
+                              title: strings.t(AppStringKey.notifications),
+                              width: 6,
+                              image: Assets.notificationGrey,
+                              trailing: unreadCount > 0
+                                  ? Container(
                                 padding: EdgeInsets.all(4),
                                 decoration: BoxDecoration(
                                   color: AppColors.red,
@@ -167,93 +170,135 @@ builder: (context, constraints) {
                                   ),
                                 ),
                               )
-                            : null,
+                                  : null,
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
+                      InkWell(
+                        onTap: () {
+                          final langs = currentUser.data?.languages;
+                          final currentLang = (langs != null && langs.isNotEmpty) ? langs.first : null;
+                          NavigationService.push(
+                            page: AppRoutes.languageEdit,
+                            arguments: currentLang,
+                          );
+                        },
+                        child:  DrawerItem(title: strings.t(AppStringKey.languages), width: 6,image: Assets.language),
+                      ),
+                    ],
+                  ),
                 ),
-                InkWell(
-                  onTap: () {
-                    final langs = currentUser.data?.languages;
-                    final currentLang = (langs != null && langs.isNotEmpty) ? langs.first : null;
-                    NavigationService.push(
-                      page: AppRoutes.languageEdit,
-                      arguments: currentLang,
-                    );
-                  },
-                  child:  DrawerItem(title: strings.t(AppStringKey.languages), width: 6,image: Assets.language),
+                verticalSpaceSX,
+
+                // InkWell(
+                //   onTap: () {
+                //     NavigationService.push(page: AppRoutes.recentActivity);
+                //   },
+                //   child:  DrawerItem(title: strings.t(AppStringKey.callHistory), width: 6,image: Assets.historyCall),
+                // ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Palette.secondaryBlack,
+                    borderRadius: BorderRadius.circular(20.r),
+                    border: Border.all(
+                      color: Colors.grey.withOpacity(0.3),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          NavigationService.push(page: AppRoutes.help);
+                        },
+                        child:  DrawerItem(title: strings.t(AppStringKey.helpAndSupport), width: 6,image: Assets.help),
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          final controller =
+                          ref.read(legalPagesControllerProvider.notifier);
+                          final res = await controller.getLegalPagesData("customer-terms-and-conditions");
+                          if (res?.data != null) {
+                            NavigationService.push(
+                              page: AppRoutes.webView,
+                              arguments: WebViewModel(
+                                title: res?.data?.title ?? "Terms & Conditions",
+                                url: res?.data?.content ?? "",
+                              ),
+                            );
+                          }
+                        },
+                        child: DrawerItem(title: strings.t(AppStringKey.termsAndConditions), width: 6, image: Assets.term,),
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          final controller =
+                          ref.read(legalPagesControllerProvider.notifier);
+                          final res = await controller.getLegalPagesData("refund-cancellation-policy");
+                          if (res?.data != null) {
+                            NavigationService.push(
+                              page: AppRoutes.webView,
+                              arguments: WebViewModel(
+                                title: res?.data?.title ?? "Refund and cancellation Policy",
+                                url: res?.data?.content ?? "",
+                              ),
+                            );
+                          }
+                        },
+                        child: DrawerItem(title: strings.t(AppStringKey.refundPolicy), width: 6, image: Assets.refund,),
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          final controller =
+                          ref.read(legalPagesControllerProvider.notifier);
+                          final res = await controller.getLegalPagesData("customer-privacy-policy");
+                          if (res?.data != null) {
+                            NavigationService.push(
+                              page: AppRoutes.webView,
+                              arguments: WebViewModel(
+                                title: res?.data?.title ?? "Privacy Policy",
+                                url: res?.data?.content ?? "",
+                              ),
+                            );
+                          }
+                        },
+                        child: DrawerItem(title: strings.t(AppStringKey.privacyPolicy), width: 6, image: Assets.privacy,),
+                      ),
+                    ],
+                  ),
                 ),
-                InkWell(
-                  onTap: () {
-                    NavigationService.push(page: AppRoutes.help);
-                  },
-                  child:  DrawerItem(title: strings.t(AppStringKey.helpAndSupport), width: 6,image: Assets.help),
+                verticalSpaceSX,
+
+
+                Container(
+                  decoration: BoxDecoration(
+                    color: Palette.secondaryBlack,
+                    borderRadius: BorderRadius.circular(20.r),
+                    border: Border.all(
+                      color: Colors.grey.withOpacity(0.3),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          showDeleteAccountDialog(context);
+                        },
+                        child:  DrawerItem(title: strings.t(AppStringKey.deleteAccount), width: 6,image: Assets.delete,iconEnable: false,),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          showLogoutAccountDialog(context);
+                        },
+                        child:  DrawerItem(title: strings.t(AppStringKey.logout), width: 6,image: Assets.logout,iconEnable: false,),
+                      ),
+                    ],
+                  ),
                 ),
-                InkWell(
-                  onTap: () async {
-                    final controller =
-                    ref.read(legalPagesControllerProvider.notifier);
-                    final res = await controller.getLegalPagesData("customer-terms-and-conditions");
-                    if (res?.data != null) {
-                      NavigationService.push(
-                        page: AppRoutes.webView,
-                        arguments: WebViewModel(
-                          title: res?.data?.title ?? "Terms & Conditions",
-                          url: res?.data?.content ?? "",
-                        ),
-                      );
-                    }
-                  },
-                  child: DrawerItem(title: strings.t(AppStringKey.termsAndConditions), width: 6, image: Assets.term,),
-                ),
-                InkWell(
-                  onTap: () async {
-                    final controller =
-                    ref.read(legalPagesControllerProvider.notifier);
-                    final res = await controller.getLegalPagesData("refund-cancellation-policy");
-                    if (res?.data != null) {
-                      NavigationService.push(
-                        page: AppRoutes.webView,
-                        arguments: WebViewModel(
-                          title: res?.data?.title ?? "Refund and cancellation Policy",
-                          url: res?.data?.content ?? "",
-                        ),
-                      );
-                    }
-                  },
-                  child: DrawerItem(title: strings.t(AppStringKey.refundPolicy), width: 6, image: Assets.refund,),
-                ),
-                InkWell(
-                  onTap: () async {
-                    final controller =
-                    ref.read(legalPagesControllerProvider.notifier);
-                    final res = await controller.getLegalPagesData("customer-privacy-policy");
-                    if (res?.data != null) {
-                      NavigationService.push(
-                        page: AppRoutes.webView,
-                        arguments: WebViewModel(
-                          title: res?.data?.title ?? "Privacy Policy",
-                          url: res?.data?.content ?? "",
-                        ),
-                      );
-                    }
-                  },
-                  child: DrawerItem(title: strings.t(AppStringKey.privacyPolicy), width: 6, image: Assets.privacy,),
-                ),
-                InkWell(
-                  onTap: () {
-                    showDeleteAccountDialog(context);
-                  },
-                  child:  DrawerItem(title: strings.t(AppStringKey.deleteAccount), width: 6,image: Assets.delete,iconEnable: false,),
-                ),InkWell(
-                  onTap: () {
-                   showLogoutAccountDialog(context);
-                  },
-                  child:  DrawerItem(title: strings.t(AppStringKey.logout), width: 6,image: Assets.logout,iconEnable: false,),
-                ),
+                // verticalSpaceLarge,
+                // verticalSpaceLarge,
                 verticalSpaceLarge,
-                verticalSpaceLarge,
-                      const Spacer(),
+                      // const Spacer(),
                       FutureBuilder<PackageInfo>(
                         future: _packageInfoFuture,
                         builder: (context, snapshot) {
@@ -263,7 +308,7 @@ builder: (context, constraints) {
                           }
 
                           return Padding(
-                            padding: EdgeInsets.only(bottom: 70.sp),
+                            padding: EdgeInsets.only(bottom: 20.sp),
                             child: Text(
                               'Version ${packageInfo.version} (${packageInfo.buildNumber})',
                               textAlign: TextAlign.center,

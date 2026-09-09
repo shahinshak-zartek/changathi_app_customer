@@ -144,7 +144,9 @@ class _HomePageState extends ConsumerState<HomePage>
         _resetAgentFilterToAll();
       }
     });
-    ref.watch(homeDataProvider);
+    final homeData = ref
+        .watch(homeDataProvider)
+        .maybeWhen(data: (homeData) => homeData?.data, orElse: () => null);
     // The tab-index listener that used to re-init Home on tab switch is gone
     // with the PageView — didPopNext() below covers returning from Profile.
     // Watch the controller, not the storage service. `preferenceStorageProvider`
@@ -258,20 +260,77 @@ class _HomePageState extends ConsumerState<HomePage>
             ),
             verticalSpaceTinyS,
             SizedBox(
+              height: 50.h,
               child: TabBar(
+                controller: tabs,
+                isScrollable: false,
+                tabAlignment: TabAlignment.fill,
                 dividerColor: Colors.transparent,
                 indicator: const BoxDecoration(),
-                controller: tabs,
+                overlayColor: WidgetStateProperty.all(Colors.transparent),
                 tabs: [
-                   _buildTab(strings.t(AppStringKey.tabAll), selectIndex == 0),
-                   _buildTab(strings.t(AppStringKey.tabAudio), selectIndex == 1),
-                   _buildTab(strings.t(AppStringKey.tabVideo), selectIndex == 2),
+                  _buildTab(
+                    strings.t(AppStringKey.tabAll),
+                    selectIndex == 0,
+                  ),
+                  _buildTab(
+                    strings.t(AppStringKey.tabAudio),
+                    selectIndex == 1,
+                  ),
+                  _buildTab(
+                    strings.t(AppStringKey.tabVideo),
+                    selectIndex == 2,
+                  ),
                 ],
               ),
             ),
-            // verticalSpaceTinyS,
-            // Text("Video call rate: ${default_audio_coins_per_second} Audio call rate: ${default_video_coins_per_second}"),
-            verticalSpaceTinyS,
+            verticalSpaceSmall,
+            if (homeData?.defaultAudioCoinsPerSecond != null &&
+                homeData?.defaultVideoCoinsPerSecond != null)
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                child: RichText(
+                  text: TextSpan(
+                    style: AppTextStyle().bodyMedium.copyWith(
+                      color: Colors.white,
+                    ),
+                    children: [
+                      TextSpan(
+                        text:
+                        'Audio call rate:',
+                      ),
+                      WidgetSpan(
+                        alignment: PlaceholderAlignment.middle,
+                        child: Image.asset(
+                          Assets.dollar,
+                          height: 20.h,
+                        ),
+                      ),
+                      TextSpan(
+                        text:
+                        '${homeData!.defaultAudioCoinsPerSecond}/sec',
+                      ),
+                      const TextSpan(text: '  '),
+                      TextSpan(
+                        text:
+                        'Video call rate:',
+                      ),
+                      WidgetSpan(
+                        alignment: PlaceholderAlignment.middle,
+                        child: Image.asset(
+                          Assets.dollar,
+                          height: 20.h,
+                        ),
+                      ),
+                      TextSpan(
+                        text:
+                        '${homeData.defaultVideoCoinsPerSecond}/sec ',
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            verticalSpaceSmall,
             Expanded(
               child: TabBarView(
                 controller: tabs,
@@ -289,21 +348,49 @@ class _HomePageState extends ConsumerState<HomePage>
   }
 
   Widget _buildTab(String label, bool selected) {
-    bool isSelected = selected;
-    return SizedBox(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(
-          child: GradientItems(
-            gradient: !isSelected,
-            child: Text(
-              label,
-              style: AppTextStyle().labelSmall.copyWith(
-                color: Colors.white,
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+    return Tab(
+      child: Container(
+        width: double.infinity,
+        alignment: Alignment.center,
+        padding: EdgeInsets.symmetric(
+          horizontal: 4.w,
+          vertical: 10.h,
+        ),
+        decoration: BoxDecoration(
+          color: Palette.secondaryBlack,
+          borderRadius: BorderRadius.circular(25.r),
+          border: Border.all(
+            color: Colors.grey.withOpacity(0.3),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (selected) ...[
+              Container(
+                width: 6.w,
+                height: 6.w,
+                decoration: const BoxDecoration(
+                  color: Palette.deepRoyalPinkBegin,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              SizedBox(width: 4.w),
+            ],
+            Flexible(
+              child: Text(
+                label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: AppTextStyle().bodySmall.copyWith(
+                  color: Colors.white,
+                  fontWeight:
+                  selected ? FontWeight.bold : FontWeight.w500,
+                ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

@@ -7,7 +7,6 @@ import '../../../app/app_text_style.dart';
 import '../../../app/palette.dart';
 import 'package:zartek_core/src/util/navigation_service.dart';
 import '../../../util/ui_helper.dart';
-import '../../../app/palette.dart';
 
 showTermsAndConditionBottomSheet(
   BuildContext context, {

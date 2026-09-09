@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zartek_core/src/features/home/model/agent_model.dart';
 import '../../../app/app_text_style.dart';
 import '../../../app/palette.dart';
 import '../../../app/theme.dart';
-import '../../../constants/assets.dart';
 import '../../../util/avatar_cache.dart';
 import '../../../util/ui_helper.dart';
 import '../../../widgets/update_gate.dart';
@@ -33,12 +31,12 @@ class AgentTile extends StatelessWidget {
   final bool isAudioCallFeatureEnabled;
   final bool isChatFeatureEnabled;
 
-  String _formatRate(double rate) {
-    if (rate.isNaN || rate.isInfinite) return "0";
-    final rounded = rate.roundToDouble();
-    if ((rate - rounded).abs() < 1e-9) return rounded.toInt().toString();
-    return rate.toStringAsFixed(1);
-  }
+  // String _formatRate(double rate) {
+  //   if (rate.isNaN || rate.isInfinite) return "0";
+  //   final rounded = rate.roundToDouble();
+  //   if ((rate - rounded).abs() < 1e-9) return rounded.toInt().toString();
+  //   return rate.toStringAsFixed(1);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +47,7 @@ class AgentTile extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.r),
-            border: Border.all(color: Palette.containerBorder, width: 1.2),
+            border: Border.all(color: Colors.white12, width: 1),
           ),
           child: Column(
             children: [
@@ -114,158 +112,146 @@ class AgentTile extends StatelessWidget {
                   /// Agent Info
                   Expanded(
                     child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      /// Call Buttons Row
-                      SizedBox(
-                        width: double.infinity,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        /// Name + Expertise + Call Buttons
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if (agent.status == "in_call") ...[
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 14.sp,
-                                  vertical: 10.sp,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: AppColors.white,
-                                  borderRadius: BorderRadius.circular(15.r),
-                                  border: Border.all(
-                                    width: 1,
-                                    color: AppColors.primaryBlend,
-                                  ),
-                                ),
-                                child: Text(
-                                  "In Call",
-                                  style: TextStyle(
-                                    fontSize: 10.sp,
-                                    color: AppColors.primaryBlend,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                            ] else ...[
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
+                            /// LEFT COLUMN - Name & Expertise
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  if (agentIsOnline &&
-                                      agent.audio_enabled &&
-                                      agent.audio_rate > 0)
-                                    phoneContainer(context),
+                                  /// Name
+                                  Text(
+                                    agent.name,
+                                    style: AppTextStyle().titleMedium,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
 
-                                  if (agentIsOnline &&
-                                      agent.video_enabled &&
-                                      agent.video_rate > 0 &&
-                                      isVideoCallFeatureEnabled) ...[
-                                    horizontalSpaceSX,
-                                    videoContainer(context),
-                                  ],
+                                  verticalSpaceTiny,
+
+                                  /// Expertise
+                                  Text(
+                                      "${agent.expertise} - ${agent.languages.map((e) => e.name).join(', ')}",
+                                      style: AppTextStyle().bodySmallTile,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ],
                               ),
-                            ],
-                            // horizontalSpaceSmall,
-                            // chatContainer(context),
-                          ],
-                        ),
-                      ),
-
-                      /// Name
-                      Text(
-                        agent.name,
-                        style: AppTextStyle().titleMedium,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-
-                      /// Expertise
-                      SizedBox(
-                        width: double.infinity,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                "${agent.expertise} - ${agent.languages.map((e) => e.name).toList()}",
-                                style: AppTextStyle().bodySmallTile,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              ),
                             ),
-                            Row(
+
+                            horizontalSpaceTiny,
+
+                            /// RIGHT COLUMN - Call Buttons
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Icon(
-                                  Icons.star,
-                                  color: const Color(0xffFFCC66),
-                                  size: 20.sp,
-                                ),
-                                Text(
-                                  agent.rating.toStringAsFixed(1),
-                                  style: AppTextStyle().bodySmall,
-                                ),
-                                horizontalSpaceSmall,
+                                if (agent.status == "in_call") ...[
+                                  Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 14.sp,
+                                      vertical: 10.sp,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.white,
+                                      borderRadius: BorderRadius.circular(15.r),
+                                      border: Border.all(
+                                        width: 1,
+                                        color: AppColors.primaryBlend,
+                                      ),
+                                    ),
+                                    child: Text(
+                                      "In Call",
+                                      style: TextStyle(
+                                        fontSize: 10.sp,
+                                        color: AppColors.primaryBlend,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ),
+                                ] else ...[
+                                  Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      if (agentIsOnline &&
+                                          agent.audio_enabled &&
+                                          agent.audio_rate > 0)
+                                        phoneContainer(context),
+
+                                      if (agentIsOnline &&
+                                          agent.video_enabled &&
+                                          agent.video_rate > 0 &&
+                                          isVideoCallFeatureEnabled) ...[
+                                        horizontalSpaceSX,
+                                        videoContainer(context),
+                                      ],
+                                    ],
+                                  ),
+                                ],
                               ],
                             ),
                           ],
                         ),
-                      ),
 
-                      verticalSpaceTiny,
+                        verticalSpaceTiny,
 
-                      /// Rates
-                      // Row(
-                      //   children: [
-                      //     Visibility(
-                      //       visible: agent.audio_enabled && agent.audio_rate > 0 && isAudioCallFeatureEnabled,
-                      //       child: Row(
-                      //         children: [
-                      //           Icon(
-                      //             CupertinoIcons.phone,
-                      //             color: Colors.black,
-                      //             size: 13.sp,
-                      //           ),
-                      //           horizontalSpaceTiny,
-                      //           Text(
-                      //             "${_formatRate(agent.audio_rate)} ",
-                      //             style: AppTextStyle().titleSmall,
-                      //           ),
-                      //           SvgPicture.asset(
-                      //             Assets.coin,
-                      //             width: 13.w,
-                      //             height: 13.h,
-                      //           ),
-                      //           Text(" /sec", style: AppTextStyle().titleSmall),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //     horizontalSpaceSmall,
-                      //     Visibility(
-                      //       visible: agent.video_enabled && agent.video_rate > 0 && isVideoCallFeatureEnabled,
-                      //       child: Row(
-                      //         children: [
-                      //           Icon(
-                      //             Icons.videocam_outlined,
-                      //             color: Colors.black,
-                      //             size: 13.sp,
-                      //           ),
-                      //           horizontalSpaceTiny,
-                      //           Text(
-                      //             "${_formatRate(agent.video_rate)} ",
-                      //             style: AppTextStyle().titleSmall,
-                      //           ),
-                      //           SvgPicture.asset(
-                      //             Assets.coin,
-                      //             width: 15.w,
-                      //             height: 13.h,
-                      //           ),
-                      //           Text(" /sec", style: AppTextStyle().titleSmall),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                    ],
+                        /// Rates
+                        // Row(
+                        //   children: [
+                        //     Visibility(
+                        //       visible: agent.audio_enabled && agent.audio_rate > 0 && isAudioCallFeatureEnabled,
+                        //       child: Row(
+                        //         children: [
+                        //           Icon(
+                        //             CupertinoIcons.phone,
+                        //             color: Colors.black,
+                        //             size: 13.sp,
+                        //           ),
+                        //           horizontalSpaceTiny,
+                        //           Text(
+                        //             "${_formatRate(agent.audio_rate)} ",
+                        //             style: AppTextStyle().titleSmall,
+                        //           ),
+                        //           SvgPicture.asset(
+                        //             Assets.coin,
+                        //             width: 13.w,
+                        //             height: 13.h,
+                        //           ),
+                        //           Text(" /sec", style: AppTextStyle().titleSmall),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //     horizontalSpaceSmall,
+                        //     Visibility(
+                        //       visible: agent.video_enabled && agent.video_rate > 0 && isVideoCallFeatureEnabled,
+                        //       child: Row(
+                        //         children: [
+                        //           Icon(
+                        //             Icons.videocam_outlined,
+                        //             color: Colors.black,
+                        //             size: 13.sp,
+                        //           ),
+                        //           horizontalSpaceTiny,
+                        //           Text(
+                        //             "${_formatRate(agent.video_rate)} ",
+                        //             style: AppTextStyle().titleSmall,
+                        //           ),
+                        //           SvgPicture.asset(
+                        //             Assets.coin,
+                        //             width: 15.w,
+                        //             height: 13.h,
+                        //           ),
+                        //           Text(" /sec", style: AppTextStyle().titleSmall),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
+                      ],
                     ),
                   ),
                   ],
@@ -291,18 +277,33 @@ class AgentTile extends StatelessWidget {
       child: Opacity(
         opacity: isRestricted || !agent.audio_allowed ? 0.4 : 1.0,
         child: Container(
-          width: 48.sp,
-          height: 48.sp,
+          width: 40.sp,
+          height: 40.sp,
           decoration: BoxDecoration(
-            color: isRestricted
-                ? Colors.red.shade300
-                : const Color(0xFFd72ebe),
             shape: BoxShape.circle,
+            gradient: isRestricted
+                ? LinearGradient(
+              colors: [
+                Colors.red.shade300,
+                Colors.red.shade500,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            )
+                : const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Palette.deepRoyalPinkBegin,
+                // Palette.deepRoyalVioletMid,
+                Palette.deepSkyBlueEnd,
+              ],
+            ),
             boxShadow: [
               BoxShadow(
                 color: (isRestricted
                     ? Colors.red.shade300
-                    : const Color(0xFFd72ebe))
+                    : Palette.deepRoyalPinkBegin)
                     .withOpacity(0.4),
                 blurRadius: 10,
                 spreadRadius: 2,
@@ -312,9 +313,9 @@ class AgentTile extends StatelessWidget {
           ),
           child: Center(
             child: Icon(
-              CupertinoIcons.phone,
+              CupertinoIcons.phone_solid,
               color: Colors.white,
-              size: 20.sp,
+              size: 25.sp,
             ),
           ),
         ),
@@ -334,34 +335,49 @@ class AgentTile extends StatelessWidget {
       },
       child: Opacity(
         opacity: isRestricted || !agent.video_allowed ? 0.4 : 1.0,
-        child: Container(
-          width: 48.sp,
-          height: 48.sp,
-          decoration: BoxDecoration(
-            color: isRestricted
-                ? Colors.red.shade300
-                : const Color(0xFFd72ebe),
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: (isRestricted
-                    ? Colors.red.shade300
-                    : const Color(0xFFd72ebe))
-                    .withOpacity(0.4),
-                blurRadius: 10,
-                spreadRadius: 2,
-                offset: const Offset(0, 4),
+          child: Container(
+            width: 40.sp,
+            height: 40.sp,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: isRestricted
+                  ? LinearGradient(
+                colors: [
+                  Colors.red.shade300,
+                  Colors.red.shade500,
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              )
+                  : const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Palette.deepRoyalPinkBegin,
+                  // Palette.deepRoyalVioletMid,
+                  Palette.deepSkyBlueEnd,
+                ],
               ),
-            ],
-          ),
-          child: Center(
-            child: Icon(
-              CupertinoIcons.video_camera,
-              color: Colors.white,
-              size: 25.sp,
+              boxShadow: [
+                BoxShadow(
+                  color: (isRestricted
+                      ? Colors.red.shade300
+                      : Palette.deepRoyalPinkBegin)
+                      .withOpacity(0.4),
+                  blurRadius: 10,
+                  spreadRadius: 2,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            child: Center(
+              child: Icon(
+                CupertinoIcons.video_camera_solid,
+                color: Colors.white,
+                size: 25.sp,
+              ),
             ),
           ),
-        ),
       )
       );
   }

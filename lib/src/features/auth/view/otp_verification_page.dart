@@ -185,7 +185,7 @@ class _OtpVerificationPageState extends ConsumerState<OtpVerificationPage> {
                           'Resend OTP in $otpCounter',
                           style: context
                               .bodySmall()
-                              .copyWith(color: AppColors.primary,),
+                              .copyWith(color: AppColors.white,),
                         ),
                       ),
                     ),

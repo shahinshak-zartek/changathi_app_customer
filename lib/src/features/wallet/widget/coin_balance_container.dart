@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../app/app_text_style.dart';
-import '../../../constants/assets.dart';
+import '../../../app/palette.dart';
 import '../../../util/ui_helper.dart';
 
 class CoinBalanceContainer extends StatelessWidget {
@@ -12,13 +12,20 @@ class CoinBalanceContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: getWidth(context: context)*0.85,
-      child: AspectRatio(
-        aspectRatio: 666/327,
         child: Container(
-          padding:  EdgeInsets.symmetric(horizontal: 40.sp),
-          height: 153,
-          decoration:  BoxDecoration(
-              image: DecorationImage(image: AssetImage(Assets.balanceBanner),fit: BoxFit.fitWidth)
+          padding: EdgeInsets.symmetric(horizontal: 20.sp),
+          height: 120.h,
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Palette.deepRoyalPinkBegin,
+                Palette.deepRoyalVioletMid,
+                Palette.deepSkyBlueEnd,
+              ],
+            ),
+            borderRadius: BorderRadius.circular(16.r),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -26,18 +33,25 @@ class CoinBalanceContainer extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                 verticalSpaceMedium,
-                   Text("Current Balance", style: AppTextStyle().bodyLarge.copyWith(color: Colors.white), textAlign: TextAlign.center),
+                  verticalSpaceMedium,
+                  Text(
+                    "Current Balance",
+                    style: AppTextStyle().bodyLarge.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
                   verticalSpaceTinyS,
-                  Text(balance,
-                      style: AppTextStyle().displayMedium.copyWith(color: Colors.white), textAlign: TextAlign.center),
-
+                  Text(
+                    balance,
+                    style: AppTextStyle().displayMedium.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
                 ],
               ),
             ],
           ),
         ),
-      ),
     );
   }
 }

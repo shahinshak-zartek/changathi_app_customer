@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:Changathi/src/app/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,7 +8,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:zartek_core/src/features/wallet/controller/payment_controller.dart';
 import 'package:zartek_core/src/features/wallet/controller/payment_gateway_controller.dart';
 import 'package:zartek_core/src/util/navigation_service.dart';
-
 import '../../../app/app_text_style.dart';
 import '../../../app/palette.dart';
 import '../../../constants/assets.dart';

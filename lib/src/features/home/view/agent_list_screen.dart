@@ -4,16 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zartek_core/zartek_core.dart'
     show CallPermissionService, CallPermissionResult;
 import 'package:zartek_core/src/app/app_routes.dart';
-import 'package:zartek_core/src/features/chat/data/user_model.dart';
-import 'package:zartek_core/src/features/chat/controller/chat_access_controller.dart';
 import 'package:zartek_core/src/features/home/controller/home_data_controller.dart';
 import 'package:zartek_core/src/util/alert.dart';
 import 'package:zartek_core/src/util/navigation_service.dart';
 import 'package:zartek_core/src/core/localization/app_strings.dart';
 import 'package:zartek_core/src/features/home/controller/agent_controller.dart';
 import 'package:zartek_core/src/features/home/model/agent_model.dart';
-
-import '../../../constants/assets.dart';
 import '../../../util/avatar_cache.dart';
 import '../../../util/ui_helper.dart';
 import '../widget/agent_tile.dart';

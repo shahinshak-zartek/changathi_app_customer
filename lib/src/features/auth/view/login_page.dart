@@ -173,6 +173,14 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                              submit(_whatsappChannel);
                            },
                          ),
+                         // verticalSpaceSmall,
+                         // GoogleContainer(
+                         //    isLoading: isWhatsappLoading,
+                         //    isEnabled: !isLoginLoading,
+                         //    onTap: () {
+                         //     submit(_whatsappChannel);
+                         //   },
+                         // ),
                        ],
                      ),
                    ),

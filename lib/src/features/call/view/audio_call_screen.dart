@@ -13,7 +13,6 @@ import 'package:zartek_core/src/features/home/model/agent_model.dart';
 import 'package:zartek_core/src/features/wallet/controller/wallet_controller.dart';
 import 'package:zartek_core/src/features/call/controller/audio_call_controller.dart';
 import 'package:zartek_core/src/features/call/model/call_state_model.dart';
-import '../widget/call_rating_dialog.dart';
 
 class AudioCallScreen extends ConsumerStatefulWidget {
   final Agent agent;
@@ -141,38 +140,9 @@ class _AudioCallScreenState extends ConsumerState<AudioCallScreen>
         );
       }
 
-      /// Check if call was actually connected
-      final wasConnected =
-          next.callDuration > 0 ||
-          next.remoteUid != null ||
-          next.remoteParticipantIdentity != null;
-
-      /// CASE 1: Show rating ONLY for real calls
       if (next.status == CallStatus.ended &&
-          previous?.status != CallStatus.ended &&
-          wasConnected) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (context) => CallRatingDialog(
-              agentName: widget.agent.name,
-              onRatingSelected: (rating) async {
-                await ref
-                    .read(audioCallControllerProvider.notifier)
-                    .rateCall(rating);
-                if (mounted) {
-                  Navigator.of(context).pop();
-                  _safePop();
-                }
-              },
-            ),
-          );
-        });
-      }
-      /// CASE 2: Ended but NOT connected → just close screen
-      else if (next.status == CallStatus.ended && !wasConnected) {
-        log("Call ended without connection → closing screen");
+          previous?.status != CallStatus.ended) {
+        log("Call ended → closing screen");
 
         Future.delayed(const Duration(milliseconds: 500), () {
           _safePop();

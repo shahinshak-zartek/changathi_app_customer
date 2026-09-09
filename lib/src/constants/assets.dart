@@ -39,7 +39,11 @@ class Assets {
   static const String historyCall = 'assets/icons/historyCall.svg';
   static const String notificationGrey = 'assets/icons/notificationGrey.svg';
   static const String ringer = 'packages/zartek_core/assets/audio/ringer.mp3';
-
+  static const String google = 'assets/icons/google_favicon.png';
+  static const String secureGreen = 'assets/icons/secure_green.png';
+  static const String dollar = 'assets/icons/dollar.png';
+  static const String smsHelp = 'assets/icons/smsHelp.svg';
+  static const String phoneHelp = 'assets/icons/phoneHelp.svg';
 
 
 }

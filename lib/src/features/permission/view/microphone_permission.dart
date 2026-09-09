@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:zartek_core/src/features/permission/utils/microphone_permission_fun.dart';
 import '../../../app/app_text_style.dart';
 import '../../../app/palette.dart';
+import '../../../constants/assets.dart';
 import '../../../util/ui_helper.dart';
 import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/gradient_iems.dart';
@@ -14,7 +15,7 @@ class MicrophonePermissionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       body: SafeArea(
         child: SizedBox(
           width: getWidth(context: context),
@@ -27,8 +28,8 @@ class MicrophonePermissionPage extends StatelessWidget {
               children: [
                 // Microphone Icon with Gradient Border
                 Container(
-                  width: 120.w,
-                  height: 120.h,
+                  width: 100.w,
+                  height: 100.h,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: const LinearGradient(
@@ -43,13 +44,13 @@ class MicrophonePermissionPage extends StatelessWidget {
                   child: Container(
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                     child:  Center(
                       child: GradientItems(
                         child: Icon(
                           Icons.mic_none,
-                          size: 70.sp,
+                          size: 60.sp,
                           color:Colors.white,
                         ),
                       ),
@@ -65,7 +66,7 @@ class MicrophonePermissionPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style:AppTextStyle().titleLarge
                 ),
-          
+
                verticalSpaceSmall,
           
                 // Description
@@ -75,14 +76,34 @@ class MicrophonePermissionPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: AppTextStyle().bodyMedium.copyWith(color: Colors.grey),
                 ),
-          
-               verticalSpaceLarge,
+                verticalSpaceSX,
+
+                // Description
+                Container(
+                  padding: EdgeInsets.all(8.r),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16.r),
+                    border: Border.all(color: Palette.containerBorder, width: 1.2),
+                  ),
+                  child: Row(
+                    children: [
+                      Image.asset(Assets.secureGreen, width: 50.w, height: 50.h),
+                      Text(
+                        'Your microphone is used only when you\n'
+                            'are on call.',
+                        textAlign: TextAlign.center,
+                        style: AppTextStyle().bodyMedium.copyWith(color: Colors.grey),
+                      ),
+                    ],
+                  ),
+                ),
+                verticalSpaceMedium,
           
                 // Allow Button (Gradient)
                 CustomElevatedButton(onPressed: () {
                    requestMicrophonePermission(context);
                 },
-                  label: "Continue",
+                  label: "Allow Microphone",
                 ),
               // verticalSpaceSmall,
               //   GradientItems(

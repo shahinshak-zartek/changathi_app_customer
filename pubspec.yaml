@@ -15,9 +15,8 @@ dependencies:
 
   # Shared platform logic (services, controllers, models, repositories, config).
   zartek_core:
-    git:
-      url: https://github.com/anshif-zartek/zartek_core.git
-      ref: v2.1.0
+    path: ../Zartek_calling_customer_core_for_clone_changathi_customer
+  # path: ../Zartek_calling_customer_core_for_clone_changathi_customer
 
   # Firebase (client owns its own Firebase project + options).
   firebase_core: ^4.3.0

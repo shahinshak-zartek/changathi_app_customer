@@ -41,7 +41,7 @@ class CoinWalletScreen extends StatelessWidget {
                       },);
                   },
                 ),
-                verticalSpaceTiny,
+                verticalSpaceSX,
                 ReferAndEarnContainer(),
                 verticalSpaceMedium,
                 SizedBox(

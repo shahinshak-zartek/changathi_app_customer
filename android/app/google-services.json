@@ -7,6 +7,25 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:503527786987:android:cccafcd8b981b429df71ae",
+        "android_client_info": {
+          "package_name": "com.changathi.agent"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyDt9GqPmKQpTkOE6p7-J0zhgh93HkAGA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:503527786987:android:f8e0157ba147798bdf71ae",
         "android_client_info": {
           "package_name": "com.changathi.customer"

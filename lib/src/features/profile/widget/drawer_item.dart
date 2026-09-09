@@ -43,7 +43,10 @@ class DrawerItem extends StatelessWidget {
           const Spacer(),
           if (trailing != null) trailing!,
           if(iconEnable)
-           Icon(Icons.arrow_forward_ios,color: AppColors.black,size: 16.sp,)
+            Padding(
+              padding: const EdgeInsets.only(right: 10.0),
+              child: Icon(Icons.arrow_forward_ios,color: AppColors.lightGray,size: 14.sp,),
+            )
         ],
       ),
     );
