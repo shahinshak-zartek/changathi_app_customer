@@ -16,7 +16,6 @@ dependencies:
   # Shared platform logic (services, controllers, models, repositories, config).
   zartek_core:
     path: ../Zartek_calling_customer_core_for_clone_changathi_customer
-  # path: ../Zartek_calling_customer_core_for_clone_changathi_customer
 
   # Firebase (client owns its own Firebase project + options).
   firebase_core: ^4.3.0
@@ -42,6 +41,8 @@ dependencies:
   agora_rtc_engine: ^6.5.3
   livekit_client: ^2.7.0
   facebook_app_events: ^0.30.5
+  firebase_auth: ^6.5.5
+  google_sign_in: ^7.2.0
 
 dev_dependencies:
   flutter_test:

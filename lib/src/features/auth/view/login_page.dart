@@ -12,6 +12,7 @@ import 'package:zartek_core/src/util/alert.dart';
 import '../../../util/country_picker.dart';
 import 'package:zartek_core/src/util/phone_number_validator.dart';
 import '../../../util/ui_helper.dart';
+import '../../../widgets/google_container.dart';
 import '../../../widgets/text_form_field_input_decoration.dart';
 import 'package:zartek_core/src/core/localization/app_strings.dart';
 import 'package:zartek_core/src/features/auth/controller/login_controller.dart';
@@ -34,6 +35,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   final _formKey = GlobalKey<FormBuilderState>();
   String phoneCode = "91";
   String? _loadingChannel;
+  static const _googleChannel = 'google';
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +46,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     // final isSmsLoading = isLoginLoading && _loadingChannel == _smsChannel;
     final isWhatsappLoading =
         isLoginLoading && _loadingChannel == _whatsappChannel;
+    final isGoogleLoading = isLoginLoading && _loadingChannel == _googleChannel;
 
     ref.listen<LoginState>(loginControllerProvider, (previous, next) {
       if (next is! LoginStateLoading && _loadingChannel != null && mounted) {
@@ -55,103 +58,120 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
     return Scaffold(
       backgroundColor: Palette.black,
-      body: SafeArea(child: SingleChildScrollView(
-         child: Column(
-           crossAxisAlignment: CrossAxisAlignment.center,
-           children: [
-             verticalSpaceLarge,
-             Image.asset(Assets.appIcon, fit: BoxFit.cover, height: 100.h),
-             verticalSpaceLarge,
-            Center(
-              child: Text(
-                strings.t(AppStringKey.welcomeBack),
-                style: AppTextStyle().titleLarge.copyWith(color: AppColors.white),
-              ),
-            ),
-             verticalSpaceTiny,
-            Text(
-              textAlign: TextAlign.center,
-              strings.t(AppStringKey.enterMobileToLogin),
-              style: AppTextStyle().bodyMedium.copyWith(color: AppColors.white),
-            ),
-             verticalSpaceLarge,
-
-             Padding(
-               padding: EdgeInsets.symmetric(horizontal: 25.0.w),
-               child: Column(
-                 crossAxisAlignment: CrossAxisAlignment.start,
-                 children: [
-                  Text(
-                    textAlign: TextAlign.center,
-                    strings.t(AppStringKey.mobileNumber),
-                    style: AppTextStyle().bodyMedium.copyWith(color: AppColors.white),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              verticalSpaceLarge,
+              Image.asset(Assets.appIcon, fit: BoxFit.cover, height: 100.h),
+              verticalSpaceLarge,
+              Center(
+                child: Text(
+                  strings.t(AppStringKey.welcomeBack),
+                  style: AppTextStyle().titleLarge.copyWith(
+                    color: AppColors.white,
                   ),
-                   // verticalSpaceSmall,
-                   FormBuilder(
-                     key: _formKey,
-                     autovalidateMode: AutovalidateMode.onUnfocus,
-                     child: Column(
-                       children: [
-                         verticalSpaceSmall,
-                         ///phone
-                         FormBuilderTextField(
-                           cursorColor: Palette.grey,
-                           autovalidateMode: AutovalidateMode.onUserInteraction,
-                           validator: (value) => validatePhoneNumber("+$phoneCode $value"),
-                           style: formBuilderTextStyle(context),
-                           maxLines: 1,
-                           name: 'phone',
-                           decoration: buildInputDecoration(context,
-                             labelColor: Colors.grey,
-                             borderRadius: BorderRadius.circular(16),
-                             borderColor: Palette.cardBgDark,
-                             fillColor: Palette.darkBackground,
-                             prefixIcon: GestureDetector(
-                               behavior: HitTestBehavior.opaque,
-                               onTap: () => gotoCountryPicker(context, (p0) {
-                                 setState(() {
-                                   phoneCode = p0.phoneCode;
-                                 });
-                               }),
-                               child: SizedBox(
-                                 height: 30,
-                                 child: Container(
-                                   padding: const EdgeInsets.only(
-                                     top: 0,
-                                     right: 12,
-                                   ),
-                                   margin: const EdgeInsetsDirectional.only(
-                                     top: 6,
-                                     bottom: 6,
-                                   ),
-                                   decoration: const BoxDecoration(
+                ),
+              ),
+              verticalSpaceTiny,
+              Text(
+                textAlign: TextAlign.center,
+                strings.t(AppStringKey.enterMobileToLogin),
+                style: AppTextStyle().bodyMedium.copyWith(
+                  color: AppColors.white,
+                ),
+              ),
+              verticalSpaceLarge,
+
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25.0.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      textAlign: TextAlign.center,
+                      strings.t(AppStringKey.mobileNumber),
+                      style: AppTextStyle().bodyMedium.copyWith(
+                        color: AppColors.white,
+                      ),
+                    ),
+                    // verticalSpaceSmall,
+                    FormBuilder(
+                      key: _formKey,
+                      autovalidateMode: AutovalidateMode.onUnfocus,
+                      child: Column(
+                        children: [
+                          verticalSpaceSmall,
+
+                          ///phone
+                          FormBuilderTextField(
+                            cursorColor: Palette.grey,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (value) =>
+                                validatePhoneNumber("+$phoneCode $value"),
+                            style: formBuilderTextStyle(context),
+                            maxLines: 1,
+                            name: 'phone',
+                            decoration: buildInputDecoration(
+                              context,
+                              labelColor: Colors.grey,
+                              borderRadius: BorderRadius.circular(16),
+                              borderColor: Palette.cardBgDark,
+                              fillColor: Palette.darkBackground,
+                              prefixIcon: GestureDetector(
+                                behavior: HitTestBehavior.opaque,
+                                onTap: () => gotoCountryPicker(context, (p0) {
+                                  setState(() {
+                                    phoneCode = p0.phoneCode;
+                                  });
+                                }),
+                                child: SizedBox(
+                                  height: 30,
+                                  child: Container(
+                                    padding: const EdgeInsets.only(
+                                      top: 0,
+                                      right: 12,
+                                    ),
+                                    margin: const EdgeInsetsDirectional.only(
+                                      top: 6,
+                                      bottom: 6,
+                                    ),
+                                    decoration: const BoxDecoration(
                                       border: Border(
                                         right: BorderSide(
                                           width: 1,
                                           color: AppColors.gray1,
                                         ),
                                       ),
-                                   ),
-                                   child: Text("+$phoneCode",style: AppTextStyle().bodyMedium.copyWith(color: AppColors.white),
-                                   ),
-                                 ),
-                               ),
-                             ),
-                             hintText: strings.t(AppStringKey.enterMobileNumberHint,),
-                           ),
+                                    ),
+                                    child: Text(
+                                      "+$phoneCode",
+                                      style: AppTextStyle().bodyMedium.copyWith(
+                                        color: AppColors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              hintText: strings.t(
+                                AppStringKey.enterMobileNumberHint,
+                              ),
+                            ),
 
-                           keyboardType: TextInputType.number,
-                           inputFormatters: [
-                             FilteringTextInputFormatter.digitsOnly,
-                             LengthLimitingTextInputFormatter(15),
-                           ],
-                           onChanged: (value) {
-                             if ((value?.length ?? 0) == 15) {
-                               FocusScope.of(context).unfocus();
-                             }
-                           },
-                         ),
-                         verticalSpaceSmall,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                              LengthLimitingTextInputFormatter(15),
+                            ],
+                            onChanged: (value) {
+                              if ((value?.length ?? 0) == 15) {
+                                FocusScope.of(context).unfocus();
+                              }
+                            },
+                          ),
+                          verticalSpaceSmall,
                           // if (isIndianNumber)
                           //   CustomElevatedButton(
                           //     width: 300.w,
@@ -170,50 +190,59 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             isLoading: isWhatsappLoading,
                             isEnabled: !isLoginLoading,
                             onTap: () {
-                             submit(_whatsappChannel);
-                           },
-                         ),
-                         // verticalSpaceSmall,
-                         // GoogleContainer(
-                         //    isLoading: isWhatsappLoading,
-                         //    isEnabled: !isLoginLoading,
-                         //    onTap: () {
-                         //     submit(_whatsappChannel);
-                         //   },
-                         // ),
-                       ],
-                     ),
-                   ),
-                 ],
-               ),
-             ),
-             verticalSpaceLarge,
-             verticalSpaceLarge,
-             verticalSpaceLarge,
-             verticalSpaceLarge,
-             Column(
-               children: [
-                Text(
-                  textAlign: TextAlign.center,
-                  strings.t(AppStringKey.byCreatingAccount),
-                  style: AppTextStyle().bodySmall.copyWith(fontSize: 8.sp, color: AppColors.white),
-                ),
-                 Row(
-                   mainAxisAlignment: MainAxisAlignment.center,
-                   children: [
-                    Text(
-                      textAlign: TextAlign.center,
-                      strings.t(AppStringKey.toOur),
-                      style: AppTextStyle().bodySmall.copyWith(
-                        fontSize: 8.sp, color: AppColors.white
+                              submit(_whatsappChannel);
+                            },
+                          ),
+                          verticalSpaceSmall,
+                          GoogleContainer(
+                            isLoading: isGoogleLoading,
+                            isEnabled: !isLoginLoading,
+                            onTap: () {
+                              setState(() {
+                                _loadingChannel = _googleChannel;
+                              });
+                              ref
+                                  .read(loginControllerProvider.notifier)
+                                  .loginWithGoogle();
+                            },
+                          ),
+                        ],
                       ),
                     ),
-                     GestureDetector(
-                       onTap: () {
-                         final controller = ref.read(
-                           legalPagesControllerProvider.notifier,
-                         );
-                         showTermsAndConditionBottomSheet(
+                  ],
+                ),
+              ),
+              verticalSpaceLarge,
+              verticalSpaceLarge,
+              verticalSpaceLarge,
+              verticalSpaceLarge,
+              Column(
+                children: [
+                  Text(
+                    textAlign: TextAlign.center,
+                    strings.t(AppStringKey.byCreatingAccount),
+                    style: AppTextStyle().bodySmall.copyWith(
+                      fontSize: 8.sp,
+                      color: AppColors.white,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        textAlign: TextAlign.center,
+                        strings.t(AppStringKey.toOur),
+                        style: AppTextStyle().bodySmall.copyWith(
+                          fontSize: 8.sp,
+                          color: AppColors.white,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          final controller = ref.read(
+                            legalPagesControllerProvider.notifier,
+                          );
+                          showTermsAndConditionBottomSheet(
                             context,
                             title: "Terms & Conditions",
                             legalPageFuture: controller.getLegalPagesData(
