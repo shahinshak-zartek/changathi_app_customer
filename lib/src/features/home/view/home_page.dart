@@ -171,8 +171,8 @@ class _HomePageState extends ConsumerState<HomePage>
                 padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
                 decoration: BoxDecoration(
                   color: AppColors.black,
-                  borderRadius: BorderRadius.circular(15.r),
-                  border: Border.all(width: 1, color: AppColors.primary),
+                  borderRadius: BorderRadius.circular(20.r),
+                  border: Border.all(width: 1, color: Palette.containerBorder,),
                 ),
                 child: res.when(
                   loading: () => SizedBox(
@@ -258,7 +258,7 @@ class _HomePageState extends ConsumerState<HomePage>
                 },
               ),
             ),
-            verticalSpaceTinyS,
+            verticalSpaceSmall,
             SizedBox(
               height: 50.h,
               child: TabBar(
@@ -297,13 +297,13 @@ class _HomePageState extends ConsumerState<HomePage>
                     children: [
                       TextSpan(
                         text:
-                        'Audio call rate:',
+                        'Audio call rate: ',
                       ),
                       WidgetSpan(
                         alignment: PlaceholderAlignment.middle,
                         child: Image.asset(
                           Assets.dollar,
-                          height: 20.h,
+                          height: 15.h,
                         ),
                       ),
                       TextSpan(
@@ -313,13 +313,13 @@ class _HomePageState extends ConsumerState<HomePage>
                       const TextSpan(text: '  '),
                       TextSpan(
                         text:
-                        'Video call rate:',
+                        'Video call rate: ',
                       ),
                       WidgetSpan(
                         alignment: PlaceholderAlignment.middle,
                         child: Image.asset(
                           Assets.dollar,
-                          height: 20.h,
+                          height: 15.h,
                         ),
                       ),
                       TextSpan(
@@ -406,7 +406,8 @@ class _HomePageState extends ConsumerState<HomePage>
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SvgPicture.asset(Assets.coin, width: 22.w, height: 22.h),
+              Image.asset(Assets.dollar, height: 25.h,),
+              // SvgPicture.asset(Assets.coin, width: 22.w, height: 22.h),
               horizontalSpaceTiny,
               Text(
                 (wallet?.data?.wallet_balance ?? "-").toString(),

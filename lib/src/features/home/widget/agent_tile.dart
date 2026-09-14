@@ -157,18 +157,18 @@ class AgentTile extends StatelessWidget {
                                       vertical: 10.sp,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: AppColors.white,
+                                      color: Palette.deepRoyalVioletMidDark,
                                       borderRadius: BorderRadius.circular(15.r),
                                       border: Border.all(
                                         width: 1,
-                                        color: AppColors.primaryBlend,
+                                        color: AppColors.gray1,
                                       ),
                                     ),
                                     child: Text(
                                       "In Call",
                                       style: TextStyle(
                                         fontSize: 10.sp,
-                                        color: AppColors.primaryBlend,
+                                        color: Palette.white,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),

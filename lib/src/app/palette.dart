@@ -27,6 +27,7 @@ class Palette {
 
   static const secondaryBlack      = Color(0xFF15131E);
   static const containerBorder      = Color(0xFF59404A);
+  static const deepRoyalVioletMidDark= Color(0xD9701287);
 
   static const gradient3begin = Color(0xFFFFF7AD);
   static const gradient3mid = Color(0xFFFFD0D3);
