@@ -177,6 +177,12 @@ builder: (context, constraints) {
                       ),
                       InkWell(
                         onTap: () {
+                          NavigationService.push(page: AppRoutes.recentActivity);
+                        },
+                        child:  DrawerItem(title: strings.t(AppStringKey.callHistory), width: 6,image: Assets.historyCall),
+                      ),
+                      InkWell(
+                        onTap: () {
                           final langs = currentUser.data?.languages;
                           final currentLang = (langs != null && langs.isNotEmpty) ? langs.first : null;
                           NavigationService.push(
@@ -190,13 +196,6 @@ builder: (context, constraints) {
                   ),
                 ),
                 verticalSpaceSX,
-
-                // InkWell(
-                //   onTap: () {
-                //     NavigationService.push(page: AppRoutes.recentActivity);
-                //   },
-                //   child:  DrawerItem(title: strings.t(AppStringKey.callHistory), width: 6,image: Assets.historyCall),
-                // ),
                 Container(
                   decoration: BoxDecoration(
                     color: Palette.secondaryBlack,

@@ -2,11 +2,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-
 import '../../../app/app_text_style.dart';
-import '../../../constants/assets.dart';
 import '../../../util/ui_helper.dart';
 import 'package:zartek_core/src/features/home/model/call_history_model.dart';
 
@@ -35,11 +32,8 @@ class RecentActivityTile extends StatelessWidget {
               children: [
                 Icon(
                   item.callMode == "audio" ? CupertinoIcons.phone :  Icons.videocam_outlined,
-                  color: Colors.black,
+                  color: Colors.white,
                   size: 15.w,
-                ),
-                SvgPicture.asset(
-                  item.callOutcome == "cancelled" ? Assets.endCall : Assets.incoming, width: 20.w, height: 20.h,
                 ),
               ],
             ),
