@@ -260,7 +260,47 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           ).createShader(bounds),
                           child: Text(
                             textAlign: TextAlign.center,
-                            strings.t(AppStringKey.termsAndPrivacy),
+                            strings.t(AppStringKey.termsAndConditions),
+                            style: AppTextStyle().bodySmall.copyWith(
+                              color: AppColors.white,
+                              decoration: TextDecoration.underline,
+                              decorationColor: AppColors.white,
+                              fontSize: 8.sp,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        textAlign: TextAlign.center,
+                        " & ",
+                        style: AppTextStyle().bodySmall.copyWith(
+                          fontSize: 8.sp,
+                          color: AppColors.white,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          final controller = ref.read(
+                            legalPagesControllerProvider.notifier,
+                          );
+                          showTermsAndConditionBottomSheet(
+                            context,
+                            title: "Privacy policy",
+                            legalPageFuture: controller.getLegalPagesData("customer-privacy-policy"
+                            ),
+                          );
+                        },
+                        child: ShaderMask(
+                          shaderCallback: (bounds) => const LinearGradient(
+                            colors: [
+                              Color(0xFFd72ebe),
+                              Color(0xFFa31cc5),
+                              Color(0xFF2a6dcc),
+                            ],
+                          ).createShader(bounds),
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            strings.t(AppStringKey.privacyPolicy),
                             style: AppTextStyle().bodySmall.copyWith(
                               color: AppColors.white,
                               decoration: TextDecoration.underline,
