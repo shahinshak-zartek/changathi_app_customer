@@ -149,17 +149,19 @@ class _ProfileAddPageState extends ConsumerState<ProfileAddPage> {
                   autovalidateMode: AutovalidateMode.onUnfocus,
                   child: Column(
                     children: [
-                      verticalSpaceMedium,
+                      verticalSpaceLarge,
 
                       ///Name
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "Name",
-                            style: AppTextStyle().bodyMedium,
+                          Row(
+                            children: [
+                              Text("Name", style: AppTextStyle().bodyMedium,),
+                              Text(" *", style: AppTextStyle().bodyMedium.copyWith(color: Colors.red))
+                            ],
                           ),
-                          verticalSpaceSX,
+                          verticalSpaceSmall,
                           FormBuilderTextField(
                             style: formBuilderTextStyle(context),
                             maxLines: 1,
@@ -203,15 +205,11 @@ class _ProfileAddPageState extends ConsumerState<ProfileAddPage> {
                           Row(
                             children: [
                               Text("Select Gender", style: AppTextStyle().bodyMedium),
-                              Text(
-                                " *",
-                                style: AppTextStyle().bodyMedium.copyWith(
-                                  color: Colors.red,
-                                ),
+                              Text(" *", style: AppTextStyle().bodyMedium.copyWith(color: Colors.red,),
                               ),
                             ],
                           ),
-                          verticalSpaceSX,
+                          verticalSpaceSmall,
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 12),
                             decoration: BoxDecoration(
@@ -253,7 +251,7 @@ class _ProfileAddPageState extends ConsumerState<ProfileAddPage> {
                             ),
                         ],
                       ),
-                      verticalSpaceSX,
+                      verticalSpaceSmall,
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

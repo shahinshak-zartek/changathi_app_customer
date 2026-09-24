@@ -34,9 +34,10 @@ class ReferAndEarnContainer extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("Refer and Earn", style: AppTextStyle().titleMedium),
+              verticalSpaceTiny,
               Row(
                 children: [
-                  SvgPicture.asset(Assets.coin, width: 15.w, height: 15.h),
+                  Image.asset(Assets.dollar, width: 15.w, height: 15.h),
                   horizontalSpaceTiny,
                   Text(" Get bonus coins for each referral",style: AppTextStyle().bodySmall,)
                 ],

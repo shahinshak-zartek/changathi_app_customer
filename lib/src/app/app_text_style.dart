@@ -105,7 +105,7 @@ class AppTextStyle {
 
   TextStyle get bodyLargeWebViewContent {
     return _baseTextStyle.copyWith(
-      fontSize: 16.sp,
+      fontSize: 15.sp,
       letterSpacing: 0.9,
       fontWeight: AppFontWeight.regular,
       color: Palette.white,

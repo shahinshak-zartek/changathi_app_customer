@@ -84,7 +84,7 @@ class _SplashPageState extends ConsumerState<SplashPage> with SingleTickerProvid
                           Image.asset(
                             Assets.appIcon,
                             fit: BoxFit.cover,
-                            height: 140,
+                            height: 200,
                           ),
                         ],
                       ),

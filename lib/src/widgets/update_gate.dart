@@ -133,7 +133,7 @@ class UpdateGateState extends State<UpdateGate> {
                     child: Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.black,
                         borderRadius: BorderRadius.circular(18.5),
                       ),
                       child: Column(
@@ -224,7 +224,7 @@ class UpdateGateState extends State<UpdateGate> {
                     child: Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.black,
                         borderRadius: BorderRadius.circular(18.5),
                       ),
                       child: Column(
@@ -401,7 +401,7 @@ class UpdateGateState extends State<UpdateGate> {
                       child: Container(
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Colors.black,
                           borderRadius: BorderRadius.circular(18.5),
                         ),
                         child: Column(
@@ -422,7 +422,7 @@ class UpdateGateState extends State<UpdateGate> {
                                 vertical: 4.h,
                               ),
                               decoration: BoxDecoration(
-                                color: AppColors.primary.withOpacity(0.1),
+                                color: AppColors.primary.withOpacity(0.2),
                                 borderRadius: BorderRadius.circular(20.r),
                               ),
                               child: Text(

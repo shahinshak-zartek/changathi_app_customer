@@ -42,8 +42,8 @@ class _WebviewPageState extends State<WebviewPage> {
           data: widget.webViewModel.url,
           styleSheet: MarkdownStyleSheet(
             p: theme.textTheme.bodyMedium?.copyWith(
-              fontSize: 10.h,
-              height: 1.6,
+              fontSize: 09.h,
+              height: 1.5,
             ),
             h1: theme.textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
