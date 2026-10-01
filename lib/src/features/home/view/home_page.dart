@@ -40,8 +40,10 @@ class HomeNotificationButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10.0),
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
       child: Container(
+        width: 40.w,
+        height: 40.w,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
@@ -49,11 +51,14 @@ class HomeNotificationButton extends StatelessWidget {
             width: 0.8,
           ),
         ),
-        child: IconButton(
-          tooltip: 'Notifications',
-          icon: const Icon(Icons.notifications_outlined),
-          onPressed: () =>
-              Navigator.of(context).pushNamed(AppRouter.notification),
+        child: Center(
+          child: IconButton(
+            iconSize: 18.w,
+            tooltip: 'Notifications',
+            icon: const Icon(Icons.notifications_outlined),
+            onPressed: () =>
+                Navigator.of(context).pushNamed(AppRouter.notification),
+          ),
         ),
       ),
     );
