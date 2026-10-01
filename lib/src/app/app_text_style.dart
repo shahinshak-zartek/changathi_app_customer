@@ -121,6 +121,14 @@ class AppTextStyle {
       color: Palette.white,
     );
   }
+  TextStyle get bodyMediumRate {
+    return _baseTextStyle.copyWith(
+      fontSize: 12.sp,
+      letterSpacing: 0.6,
+      fontWeight: AppFontWeight.semiBold,
+      color: Palette.white,
+    );
+  }
 
   /// Caption Text Style
   TextStyle get bodySmall {

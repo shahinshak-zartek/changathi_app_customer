@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/legacy.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zartek_core/src/app/app_routes.dart';
 import 'package:zartek_core/src/features/chat/controller/chat_access_controller.dart';
 import 'package:zartek_core/src/features/home/controller/banner_list_controller.dart';
@@ -20,7 +19,6 @@ import '../../../app/theme.dart';
 import '../../../constants/assets.dart';
 import '../../../util/ui_helper.dart';
 import '../../../app/app_router.dart';
-import '../../../widgets/gradient_iems.dart';
 import '../../../widgets/live_avatar.dart';
 import '../../../widgets/oops_error.dart';
 import '../../../widgets/update_gate.dart';
@@ -35,6 +33,32 @@ final homeIndexProvider = StateProvider<int>((ref) {
 final resetHomeAgentFilterProvider = StateProvider<int>((ref) {
   return 0;
 });
+
+class HomeNotificationButton extends StatelessWidget {
+  const HomeNotificationButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10.0),
+      child: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: Palette.containerBorder,
+            width: 0.8,
+          ),
+        ),
+        child: IconButton(
+          tooltip: 'Notifications',
+          icon: const Icon(Icons.notifications_outlined),
+          onPressed: () =>
+              Navigator.of(context).pushNamed(AppRouter.notification),
+        ),
+      ),
+    );
+  }
+}
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -185,6 +209,7 @@ class _HomePageState extends ConsumerState<HomePage>
               );
             },
           ),
+          HomeNotificationButton(),
           horizontalSpaceSmall,
         ],
         title: Row(
@@ -291,7 +316,7 @@ class _HomePageState extends ConsumerState<HomePage>
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: RichText(
                   text: TextSpan(
-                    style: AppTextStyle().bodyMedium.copyWith(
+                    style: AppTextStyle().bodyMediumRate.copyWith(
                       color: Colors.white,
                     ),
                     children: [
@@ -383,7 +408,7 @@ class _HomePageState extends ConsumerState<HomePage>
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
-                style: AppTextStyle().bodySmall.copyWith(
+                style: AppTextStyle().bodyMedium.copyWith(
                   color: Colors.white,
                   fontWeight:
                   selected ? FontWeight.bold : FontWeight.w500,

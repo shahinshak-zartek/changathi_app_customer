@@ -1,4 +1,4 @@
-# Vibe Talk
+# CHANGATHI App customer
 
 A Zartek Calling Platform client. This is a **standalone app repo**: all shared
 platform logic (services, controllers, models, repositories, config) comes from
