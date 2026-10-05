@@ -47,7 +47,7 @@ class AgentTile extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.r),
-            border: Border.all(color: Colors.grey.withOpacity(0.3), width: 1),
+            border: Border.all(color: Colors.grey.withOpacity(0.5), width: 1),
           ),
           child: Column(
             children: [

@@ -121,9 +121,17 @@ class AppTextStyle {
       color: Palette.white,
     );
   }
+  TextStyle get bodyMediumTab {
+    return _baseTextStyle.copyWith(
+      fontSize: 13.sp,
+      letterSpacing: 0.5,
+      fontWeight: AppFontWeight.regular,
+      color: Palette.white,
+    );
+  }
   TextStyle get bodyMediumRate {
     return _baseTextStyle.copyWith(
-      fontSize: 12.sp,
+      fontSize: 13.sp,
       letterSpacing: 0.6,
       fontWeight: AppFontWeight.semiBold,
       color: Palette.white,

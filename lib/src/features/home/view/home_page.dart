@@ -413,7 +413,7 @@ class _HomePageState extends ConsumerState<HomePage>
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
-                style: AppTextStyle().bodyMedium.copyWith(
+                style: AppTextStyle().bodyMediumTab.copyWith(
                   color: Colors.white,
                   fontWeight:
                   selected ? FontWeight.bold : FontWeight.w500,
