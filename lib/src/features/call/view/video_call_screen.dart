@@ -16,6 +16,8 @@ import 'package:zartek_core/src/features/call/controller/video_call_controller.d
 import 'package:zartek_core/src/features/call/model/call_state_model.dart';
 import 'package:zartek_core/src/features/call/service/call_media_service.dart';
 
+import '../util/local_video_mirror_mode.dart';
+
 class VideoCallScreen extends ConsumerStatefulWidget {
   final Agent agent;
 
@@ -320,7 +322,9 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen>
             ? lk.VideoTrackRenderer(
                 liveKitLocalTrack,
                 fit: lk.VideoViewFit.cover,
-                mirrorMode: lk.VideoViewMirrorMode.mirror,
+                mirrorMode: liveKitLocalPreviewMirrorMode(
+                  isFrontCamera: callState.isFrontCamera,
+                ),
               )
             : (callState.isVideoEnabled &&
                   !isLiveKit &&
@@ -328,7 +332,12 @@ class _VideoCallScreenState extends ConsumerState<VideoCallScreen>
             ? AgoraVideoView(
                 controller: VideoViewController(
                   rtcEngine: _mediaService.agoraEngineSafe,
-                  canvas: const VideoCanvas(uid: 0),
+                  canvas: VideoCanvas(
+                    uid: 0,
+                    mirrorMode: agoraLocalPreviewMirrorMode(
+                      isFrontCamera: callState.isFrontCamera,
+                    ),
+                  ),
                 ),
               )
             : Container(
