@@ -48,11 +48,13 @@ class DefaultFirebaseOptions {
     storageBucket: 'changathiapp-dev.firebasestorage.app',
   );
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDH9rrMWBirFHYV7dRtnFvTrXX0tXP5bqY',
-    appId: '1:584798238803:ios:5ebeac229583a1239faea6',
-    messagingSenderId: '584798238803',
-    projectId: 'nizhal-app-prod',
-    storageBucket: 'nizhal-app-prod.firebasestorage.app',
+    apiKey: 'AIzaSyB5155GCILpg99IR96MPh8ws_MPD1Zvn_I',
+    appId: '1:503527786987:ios:ba705e6e7c183d0edf71ae',
+    messagingSenderId: '503527786987',
+    projectId: 'changathiapp-dev',
+    storageBucket: 'changathiapp-dev.firebasestorage.app',
+    androidClientId: '503527786987-fr75g14348vo5kk5pvrkmg0krtb1svt4.apps.googleusercontent.com',
+    iosClientId: '503527786987-81udjgdobvm00losljo4pgbm0nm4uh3l.apps.googleusercontent.com',
     iosBundleId: 'com.vibetalks.customer',
   );
   static const FirebaseOptions web = FirebaseOptions(
