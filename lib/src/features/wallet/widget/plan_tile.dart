@@ -44,7 +44,8 @@ class PlanTile extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(Assets.dollar, width: 18.w, height: 18.h),
+                  SvgPicture.asset(Assets.coin, height: 18.h,),
+                  // Image.asset(Assets.dollar, width: 18.w, height: 18.h),
                   Text(" ${plan.amount} Coins",style: AppTextStyle().bodyMedium,)
                 ],
               ),

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/legacy.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zartek_core/src/app/app_routes.dart';
 import 'package:zartek_core/src/features/chat/controller/chat_access_controller.dart';
 import 'package:zartek_core/src/features/home/controller/banner_list_controller.dart';
@@ -327,14 +328,11 @@ class _HomePageState extends ConsumerState<HomePage>
                     children: [
                       TextSpan(
                         text:
-                        'Audio call rate: ',
+                        'Audio call coins: ',
                       ),
                       WidgetSpan(
                         alignment: PlaceholderAlignment.middle,
-                        child: Image.asset(
-                          Assets.dollar,
-                          height: 15.h,
-                        ),
+                        child: SvgPicture.asset(Assets.coin, height: 10.h,),
                       ),
                       TextSpan(
                         text:
@@ -343,14 +341,11 @@ class _HomePageState extends ConsumerState<HomePage>
                       const TextSpan(text: '  '),
                       TextSpan(
                         text:
-                        'Video call rate: ',
+                        'Video call coins: ',
                       ),
                       WidgetSpan(
                         alignment: PlaceholderAlignment.middle,
-                        child: Image.asset(
-                          Assets.dollar,
-                          height: 15.h,
-                        ),
+                        child: SvgPicture.asset(Assets.coin, height: 10.h,),
                       ),
                       TextSpan(
                         text:
@@ -436,7 +431,8 @@ class _HomePageState extends ConsumerState<HomePage>
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(Assets.dollar, height: 25.h,),
+              SvgPicture.asset(Assets.coin, height: 22.h,),
+              // Image.asset(Assets.dollar, height: 25.h,),
               // SvgPicture.asset(Assets.coin, width: 22.w, height: 22.h),
               horizontalSpaceTiny,
               Text(

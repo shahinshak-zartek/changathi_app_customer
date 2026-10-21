@@ -1984,7 +1984,7 @@ packages:
       path: "../Zartek_calling_customer_core_for_clone_changathi_customer"
       relative: true
     source: path
-    version: "2.1.1+22"
+    version: "2.2.1+23"
 sdks:
   dart: ">=3.12.0 <4.0.0"
   flutter: ">=3.44.0"

@@ -37,7 +37,8 @@ class ReferAndEarnContainer extends ConsumerWidget {
               verticalSpaceTiny,
               Row(
                 children: [
-                  Image.asset(Assets.dollar, width: 15.w, height: 15.h),
+                  SvgPicture.asset(Assets.coin, height: 15.h,),
+                  // Image.asset(Assets.dollar, width: 15.w, height: 15.h),
                   horizontalSpaceTiny,
                   Text(" Get bonus coins for each referral",style: AppTextStyle().bodySmall,)
                 ],

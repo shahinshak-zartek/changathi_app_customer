@@ -132,7 +132,7 @@ class AppTextStyle {
   TextStyle get bodyMediumRate {
     return _baseTextStyle.copyWith(
       fontSize: 13.sp,
-      letterSpacing: 0.6,
+      letterSpacing: 0.4,
       fontWeight: AppFontWeight.semiBold,
       color: Palette.white,
     );
