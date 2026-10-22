@@ -74,6 +74,14 @@
           }
         },
         {
+          "client_id": "503527786987-505sdeog8h0jsr5sm5i7e09v63257sbt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.changathi.customer",
+            "certificate_hash": "a897d626ad94d4aa4a20063ff4c3f742b2e95bef"
+          }
+        },
+        {
           "client_id": "503527786987-r8t2kgerjh61v5i3dmttdq9ld246fsij.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

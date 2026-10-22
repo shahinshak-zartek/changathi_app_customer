@@ -1,7 +1,7 @@
 name: Changathi
 description: "Changathi — Friend Calling App."
 publish_to: 'none'
-version: 1.2.0+8
+version: 1.2.4+12
 
 environment:
   sdk: ^3.8.1
@@ -15,6 +15,9 @@ dependencies:
 
   # Shared platform logic (services, controllers, models, repositories, config).
   zartek_core:
+#    git:
+#      url: https://github.com/anshif-zartek/zartek_core.git
+#      ref: v2.2.2
     path: ../Zartek_calling_customer_core_for_clone_changathi_customer
 
   # Firebase (client owns its own Firebase project + options).

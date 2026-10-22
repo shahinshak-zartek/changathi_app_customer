@@ -397,26 +397,26 @@ packages:
     dependency: transitive
     description:
       name: firebase_analytics
-      sha256: "1c46136d9226e7e070013582097d997248a34cf94856c7e95f4fdf346bf4a397"
+      sha256: "86acc776d1f826efa266f442dfd1081026fb6b6bebfc4e6cd0554899e0e328ac"
       url: "https://pub.dev"
     source: hosted
-    version: "12.4.3"
+    version: "12.4.4"
   firebase_analytics_platform_interface:
     dependency: transitive
     description:
       name: firebase_analytics_platform_interface
-      sha256: "0b4ae09407352ec462a2403b8addf18bdf94a35e0e0c9dda198274516c32456a"
+      sha256: "885cfee66566604dcf987ef4dbfc18bce239b3114c48b86b7332ee128f2633ed"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.3"
+    version: "6.0.4"
   firebase_analytics_web:
     dependency: transitive
     description:
       name: firebase_analytics_web
-      sha256: e66c02ab6491393767b197dfb37908178295cfdb1c5d30e33cad9d7276d1c5fa
+      sha256: "4ae00b0bc8ca18606b551e81f02b9d4cab87c5fdfc1070422a2aef550c562c3a"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.1+9"
+    version: "0.6.1+10"
   firebase_auth:
     dependency: "direct main"
     description:
@@ -477,10 +477,10 @@ packages:
     dependency: transitive
     description:
       name: firebase_crashlytics_platform_interface
-      sha256: cbedfe34081c4ad5c4e0558165383d4fa6b8fd70ae6e696190aad345adbb346c
+      sha256: c219e98e36d0b30a776cfed41f7064af0e1f341674f9cbb42fe5ab37eff43874
       url: "https://pub.dev"
     source: hosted
-    version: "3.8.24"
+    version: "3.8.25"
   firebase_messaging:
     dependency: "direct main"
     description:
@@ -493,18 +493,18 @@ packages:
     dependency: transitive
     description:
       name: firebase_messaging_platform_interface
-      sha256: e10f6d521e7ed663d0ea2f4ec7de4c6729f8c2ce25d32faf6d6b4219da8515c2
+      sha256: "7e8dc65dfbd8c97d8f88031bfc0896947ee9cbb47940a5bba5edb343a70919a7"
       url: "https://pub.dev"
     source: hosted
-    version: "4.9.0"
+    version: "4.9.1"
   firebase_messaging_web:
     dependency: transitive
     description:
       name: firebase_messaging_web
-      sha256: "7ab45dfaf8efcd1a769baa9b8debbd0da281f5d3fc07274296b564396a980292"
+      sha256: b469facb97b4bc3e362ffcd5118b78fe6008f77faab8da2f41dbe16ea841157f
       url: "https://pub.dev"
     source: hosted
-    version: "4.2.1"
+    version: "4.2.2"
   firebase_remote_config:
     dependency: transitive
     description:
@@ -517,18 +517,18 @@ packages:
     dependency: transitive
     description:
       name: firebase_remote_config_platform_interface
-      sha256: "59a20db282c7f6166b02d5158e6bcd998937b1c1711307af8f55cb5da110bb2a"
+      sha256: "1e54bb8a993c3bdfe03f7e8b81fd9874c155c122f29b71a2f1e438fb21ee69a7"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.3"
+    version: "3.0.4"
   firebase_remote_config_web:
     dependency: transitive
     description:
       name: firebase_remote_config_web
-      sha256: a97dced4db76235b1680cf647e8a23528dff1b94fab6e7ed1cfc3e2f9d9f4b72
+      sha256: afda618fb82a506c0f9352e04238597719744edcd2c9c6b71f3f88450779bfbf
       url: "https://pub.dev"
     source: hosted
-    version: "1.10.10"
+    version: "1.10.11"
   fixnum:
     dependency: transitive
     description:
