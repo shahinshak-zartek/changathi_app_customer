@@ -2,7 +2,7 @@ import 'package:zartek_core/zartek_core.dart';
 
 import 'app_theme.dart';
 
-const bool _isDev = false;
+const bool _isDev = true;
 
 /// Changathi App client configuration.
 const AppConfig vibeTalkConfig = AppConfig(

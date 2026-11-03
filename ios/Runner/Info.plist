@@ -67,9 +67,9 @@
 		<string>audio</string>
 	</array>
 	<key>FacebookAppID</key>
-	<string>1517245456842762</string>
+	<string>1460533582945208</string>
 	<key>FacebookClientToken</key>
-	<string>f0ffa5c87fe54b5248c848a2afd29998</string>
+	<string>fa79d82bf04b78a89be03467162b6d5b</string>
 	<key>FacebookDisplayName</key>
 	<string>Changathi</string>
 	<key>CFBundleURLTypes</key>
@@ -77,7 +77,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb151724545684276200000000</string>
+				<string>fb1460533582945208</string>
 			</array>
 		</dict>
 	</array>
